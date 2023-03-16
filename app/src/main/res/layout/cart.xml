@@ -1,19 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.hawkergogo.MainActivity"
-    android:id="@+id/relativelayout">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_centerVertical="true"
+    android:id="@+id/relativelayout"
+    android:layout_marginStart="30sp"
+    android:layout_marginEnd="30sp"
+    tools:context="com.example.hawkergogo.Cart">
+
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="60sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginBottom="30sp"
+        android:bottomRightRadius="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button_orange"
+        android:text="Order More"/>
+
+    <TextView
+        android:id="@+id/paymentHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Make a Payment!"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/paymentCaption1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:textSize="20sp"
+        android:text="The hawkers are giving away the food to avoid food waste. Help our local hawker culture by paying as much as you can!" />
+
+    <TextView
+        android:id="@+id/paymentCaption2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:textSize="20sp"
+        android:text="Note that you will only be lead to a payment page if you choose to pay an amount, otherwise your food will be free!" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Enter an Amount" />
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:hint="SGD $" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Select Method of Payment" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:scrollbars="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="15sp" />
 
-</RelativeLayout>
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="60sp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button_purple"
+        android:text="Reserve Food"/>
+
+
+</LinearLayout>

@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardview"
     android:layout_width="300dp"
-    android:layout_height="wrap_content"
+    android:layout_height="150sp"
     android:layout_margin="10dp"
     card_view:contentPadding="8dp"
     card_view:cardCornerRadius="8dp"
@@ -18,8 +18,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
-        android:contentDescription="@string/app_name"/>
+        android:layout_marginBottom="30dp" />
     <!--            android:src="@drawable/_023_02_19_15_37_23"-->
 
 
@@ -27,13 +26,9 @@
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dog"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="100sp"
         android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 
 
