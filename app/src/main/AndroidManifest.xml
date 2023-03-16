@@ -33,7 +33,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cart"
+        <activity android:name=".CartPayment"
             android:label="Cart"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>

@@ -9,8 +9,7 @@
     android:layout_margin="10dp"
     card_view:contentPadding="8dp"
     card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="8dp"
-    >
+    card_view:cardElevation="8dp">
 
     <ImageView
         android:id="@+id/img"
@@ -29,7 +28,5 @@
         android:layout_marginTop="100sp"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-
 
 </androidx.cardview.widget.CardView>
