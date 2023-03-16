@@ -21,4 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, consumerMain.class);
         startActivity(intent);
     }
+
+    public void goTofoodOptions(View view) {
+        Intent intent = new Intent(MainActivity.this, Giveaway.class);
+        startActivity(intent);
+    }
 }

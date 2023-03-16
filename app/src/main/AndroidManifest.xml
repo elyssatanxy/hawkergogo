@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Hawkergogo"
         tools:targetApi="31">
         <activity
+            android:name=".Giveaway"
+            android:exported="false" />
+        <activity
             android:name=".consumerMain"
             android:exported="false" />
         <activity
@@ -33,10 +36,10 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".CartPayment"
+        <activity
+            android:name=".CartPayment"
             android:label="Cart"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
     </application>
 
 </manifest>

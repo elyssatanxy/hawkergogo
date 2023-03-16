@@ -25,4 +25,14 @@
         android:layout_marginBottom="147dp"
         android:onClick="goToConsumerMain"
         android:text="GO TO CONSUMER MAIN" />
+
+    <Button
+        android:id="@+id/foodOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="67dp"
+        android:onClick="goTofoodOptions"
+        android:text="GO TO FOOD OPTIONS" />
+
 </RelativeLayout>
