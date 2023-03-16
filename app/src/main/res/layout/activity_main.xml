@@ -14,6 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="go to cart"
-        android:onClick="goToCart"/>
+        android:onClick="goToCart"
+        android:text="go to cart" />
+
+    <Button
+        android:id="@+id/consumerMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="147dp"
+        android:onClick="goToConsumerMain"
+        android:text="GO TO CONSUMER MAIN" />
 </RelativeLayout>

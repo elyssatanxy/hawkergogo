@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Cart.class);
         startActivity(intent);
     }
+
+    public void goToConsumerMain(View view) {
+        Intent intent = new Intent(MainActivity.this, consumerMain.class);
+        startActivity(intent);
+    }
 }
