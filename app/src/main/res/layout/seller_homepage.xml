@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            app:srcCompat="@drawable/cs206_profileicon"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweatherblack"
+            android:text="Hello Andy!"
+            android:textSize="24sp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/submessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweatherregular"
+            android:text="Let's waste less"
+            android:textSize="16sp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="45dp"/>
+
+        <TextView
+            android:id="@+id/ongoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweatherblack"
+            android:text="Ongoing Giveaways"
+            android:textSize="24sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="270dp"
+                    android:layout_marginLeft="20dp"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="15dp">
+
+                    <ImageView
+                        android:id="@+id/chickenrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="131dp"
+                        app:srcCompat="@drawable/chickenrice" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherblack"
+                        android:text="Khicken Rice -\nLast 20 Plates!"
+                        android:textSize="20sp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherbold"
+                        android:text="9/20 portions reserved"
+                        android:textSize="16sp"
+                        android:layout_marginTop="200dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherbold"
+                        android:text="Pick up by: 10:00pm"
+                        android:textSize="16sp"
+                        android:layout_marginTop="230dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatheritalic"
+                        android:text="Tap to Edit"
+                        android:textSize="12sp"
+                        android:layout_marginTop="135dp"
+                        android:layout_marginLeft="230dp"
+                        />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="270dp"
+                    android:layout_marginLeft="20dp"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="15dp">
+
+                    <ImageView
+                        android:id="@+id/rice"
+                        android:layout_width="match_parent"
+                        android:layout_height="132dp"
+                        app:srcCompat="@drawable/rice" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherblack"
+                        android:text="Khicken Rice - \nHainanese Rice"
+                        android:textSize="20sp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherbold"
+                        android:text="3/8 portions reserved"
+                        android:textSize="16sp"
+                        android:layout_marginTop="200dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatherbold"
+                        android:text="Pick up by: 10:00pm"
+                        android:textSize="16sp"
+                        android:layout_marginTop="230dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/merriweatheritalic"
+                        android:text="Tap to Edit"
+                        android:textSize="12sp"
+                        android:layout_marginTop="135dp"
+                        android:layout_marginLeft="230dp"
+                        />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/past"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweatherblack"
+            android:text="Past Giveaways"
+            android:textSize="24sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="450dp"/>
+
+        <TextView
+            android:id="@+id/pastmessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweatherregular"
+            android:text="Quickly repeat previous giveaways"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="480dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="370dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="520dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="15dp">
+
+            <ImageView
+                android:id="@+id/pastchickenrice"
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/cs206_chickenrice" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherblack"
+                android:text="Khicken Rice - \nLast 10 Plates!"
+                android:textSize="20sp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="190dp"
+                />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherbold"
+                android:text="Pick up by: 9:50pm"
+                android:textSize="16sp"
+                android:layout_marginTop="110dp"
+                android:layout_marginLeft="190dp"
+                />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatheritalic"
+                android:text="Tap to Repeat"
+                android:textSize="12sp"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="230dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="370dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="720dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="15dp">
+
+            <ImageView
+                android:id="@+id/past2chickenrice"
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/cs206_chickenrice" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherblack"
+                android:text="Khicken Rice - \nLast 20 Plates!"
+                android:textSize="20sp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="190dp"
+                />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherbold"
+                android:text="Pick up by: 10:00pm"
+                android:textSize="16sp"
+                android:layout_marginTop="110dp"
+                android:layout_marginLeft="190dp"
+                />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatheritalic"
+                android:text="Tap to Repeat"
+                android:textSize="12sp"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="230dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </RelativeLayout>
+</ScrollView>
