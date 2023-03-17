@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToConsumerMain(View view) {
-        Intent intent = new Intent(MainActivity.this, consumerMain.class);
+        Intent intent = new Intent(MainActivity.this, ConsumerMain.class);
         startActivity(intent);
     }
 

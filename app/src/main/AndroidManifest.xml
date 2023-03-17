@@ -15,7 +15,7 @@
             android:name=".Giveaway"
             android:exported="false" />
         <activity
-            android:name=".consumerMain"
+            android:name=".ConsumerMain"
             android:exported="false" />
         <activity
             android:name=".loadingScreen"
@@ -39,7 +39,7 @@
         <activity
             android:name=".CartPayment"
             android:label="Cart"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     </application>
 
 </manifest>
