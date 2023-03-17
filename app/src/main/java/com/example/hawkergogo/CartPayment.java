@@ -1,6 +1,7 @@
 package com.example.hawkergogo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,14 +13,14 @@ public class CartPayment extends AppCompatActivity {
     RecyclerView paymentRecycler;
     RecyclerView.LayoutManager paymentRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<CartItem> paymentSource;
-    Adapter paymentAdapter;
+    ArrayList<PaymentItem> paymentSource;
+    PaymentAdapter paymentAdapter;
 
     RecyclerView itemsRecycler;
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
     ArrayList<CartItem> itemsSource;
-    Adapter itemsAdapter;
+    CartItemsAdapter itemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,8 @@ public class CartPayment extends AppCompatActivity {
         addItemsToPaymentRecyclerViewArrayList();
         addItemsToItemsRecyclerViewArrayList();
 
-        paymentAdapter = new Adapter(paymentSource);
-        itemsAdapter = new Adapter(itemsSource);
+        paymentAdapter = new PaymentAdapter(paymentSource);
+        itemsAdapter = new CartItemsAdapter(itemsSource);
 
         // Set Horizontal Layout Manager
         // for Recycler view
@@ -60,15 +61,23 @@ public class CartPayment extends AppCompatActivity {
     // Function to add items in RecyclerView.
     public void addItemsToPaymentRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice");
+        PaymentItem item = new PaymentItem(R.drawable.dbs_paylah, "DBS PayLah!");
+        PaymentItem item2 = new PaymentItem(R.drawable.gpay, "Google Pay");
         paymentSource = new ArrayList<>();
         paymentSource.add(item);
+        paymentSource.add(item2);
     }
 
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.caifan, "Khicken Rice");
+        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
+        CartItem item2 = new CartItem(R.drawable.caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
         itemsSource = new ArrayList<>();
         itemsSource.add(item);
+        itemsSource.add(item2);
+    }
+
+    public void goBack(View view) {
+        super.finish();
     }
 }

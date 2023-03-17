@@ -14,10 +14,17 @@
         android:background="@drawable/background_consumer"
         tools:context="com.example.hawkergogo.CartPayment">
 
+        <Button
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/back_button"
+            android:onClick="goBack" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40sp"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="24sp"
@@ -29,13 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-            android:layout_marginBottom="15sp"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp" />
 
         <Button
             android:layout_width="200sp"
             android:layout_height="60sp"
+            android:layout_marginTop="15sp"
             android:layout_marginBottom="30sp"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
@@ -43,7 +50,7 @@
             android:background="@drawable/rounded_button_orange"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:text="Order More" />
 
         <TextView
@@ -54,7 +61,7 @@
             android:layout_marginEnd="30sp"
             android:text="Make a Payment!"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/paymentCaption1"
@@ -63,17 +70,17 @@
             android:layout_marginBottom="15sp"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="The hawkers are giving away the food to avoid food waste. Help our local hawker culture by paying as much as you can!" />
 
         <TextView
             android:id="@+id/paymentCaption2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15sp"
+            android:layout_marginBottom="25sp"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="Note that you will only need to select a payment method if you choose to pay an amount, otherwise your food will be free!" />
 
         <TextView
@@ -81,29 +88,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="Enter an Amount" />
+            android:text="Enter an Amount"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100sp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginStart="30sp"
-            android:layout_marginEnd="30sp">
+            android:layout_marginStart="35sp"
+            android:layout_marginEnd="35sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="35sp"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp"
+            android:background="@drawable/payment_amount">
 
             <TextView
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
-
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:text="SGD$" />
+                android:text="SGD$ | " />
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15sp" />
+                android:inputType="number" />
         </LinearLayout>
 
         <TextView
@@ -112,7 +123,7 @@
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="Select Method of Payment" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -134,7 +145,7 @@
             android:background="@drawable/rounded_button_purple"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:text="Reserve Food" />
 
     </LinearLayout>

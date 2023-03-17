@@ -1,14 +1,12 @@
 package com.example.hawkergogo;
 
-public class CartItem {
+public class PaymentItem {
     private int imageId;
     private String title;
-    private String pickup;
 
-    public CartItem(int imageId, String title, String pickup) {
+    public PaymentItem(int imageId, String title) {
         this.imageId = imageId;
         this.title = title;
-        this.pickup = pickup;
     }
 
     public int getImageId() {
@@ -25,13 +23,5 @@ public class CartItem {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getPickup() {
-        return pickup;
-    }
-
-    public void setPickup(String pickup) {
-        this.pickup = pickup;
     }
 }
