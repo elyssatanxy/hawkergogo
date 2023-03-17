@@ -3,37 +3,33 @@ package com.example.hawkergogo;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
-    // List with String type
-    private List<String> list;
+    // Replace CartItem with your item
+    private List<CartItem> list;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
-    public class MyView
-            extends RecyclerView.ViewHolder {
-
-        // Text View
+    public class MyView extends RecyclerView.ViewHolder {
         TextView textView;
+        ImageView imageView;
 
-        // parameterised constructor for View Holder class
-        // which takes the view as a parameter
-        public MyView(View view)
-        {
+        public MyView(View view) {
             super(view);
 
             // initialise TextView with id
-            textView = (TextView)view
-                    .findViewById(R.id.textview);
+            textView = (TextView) view.findViewById(R.id.textview);
+            imageView = (ImageView) view.findViewById(R.id.img);
         }
     }
 
     // Constructor for adapter class
     // which takes a list of String type
-    public Adapter(List<String> horizontalList)
+    public Adapter(List<CartItem> horizontalList)
     {
         this.list = horizontalList;
     }
@@ -67,10 +63,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
     public void onBindViewHolder(final MyView holder,
                                  final int position)
     {
-
+        CartItem item = list.get(position);
         // Set the text of each item of
         // Recycler view with the list items
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(item.getTitle());
+        holder.imageView.setImageResource(item.getImageId());
     }
 
     // Override getItemCount which Returns

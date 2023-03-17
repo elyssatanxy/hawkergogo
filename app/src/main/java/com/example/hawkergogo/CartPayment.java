@@ -12,13 +12,13 @@ public class CartPayment extends AppCompatActivity {
     RecyclerView paymentRecycler;
     RecyclerView.LayoutManager paymentRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<String> paymentSource;
+    ArrayList<CartItem> paymentSource;
     Adapter paymentAdapter;
 
     RecyclerView itemsRecycler;
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
-    ArrayList<String> itemsSource;
+    ArrayList<CartItem> itemsSource;
     Adapter itemsAdapter;
 
     @Override
@@ -60,15 +60,15 @@ public class CartPayment extends AppCompatActivity {
     // Function to add items in RecyclerView.
     public void addItemsToPaymentRecyclerViewArrayList() {
         // Adding items to ArrayList
+        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice");
         paymentSource = new ArrayList<>();
-        paymentSource.add("DBS PayLah!");
-        paymentSource.add("Apple Pay");
+        paymentSource.add(item);
     }
 
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
+        CartItem item = new CartItem(R.drawable.caifan, "Khicken Rice");
         itemsSource = new ArrayList<>();
-        itemsSource.add("Khicken Rice");
-        itemsSource.add("Hainanese Rice");
+        itemsSource.add(item);
     }
 }
