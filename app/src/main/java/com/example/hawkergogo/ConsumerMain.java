@@ -45,6 +45,7 @@ public class ConsumerMain extends AppCompatActivity {
             }
         });
 
+
         // initialisation with id's
         featuredRecycler = (RecyclerView) findViewById(R.id.featuredRecycler);
         featuredRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
