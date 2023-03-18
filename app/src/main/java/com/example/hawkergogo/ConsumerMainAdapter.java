@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
         TextView textView2;
         ImageView imageView;
 
+        TextView qty;
+
         public MyView(View view) {
             super(view);
 
@@ -26,6 +30,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
             textView = (TextView) view.findViewById(R.id.titleText);
             imageView = (ImageView) view.findViewById(R.id.img2);
             textView2 = (TextView) view.findViewById(R.id.pickupTimeText);
+            qty = (TextView) view.findViewById(R.id.qty);
         }
     }
 
@@ -51,6 +56,11 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
         holder.textView2.setText(item.getTiming());
+
+        if(item.getQty() != 0) {
+            holder.qty.setVisibility(View.VISIBLE);
+            holder.qty.setText(Integer.toString(item.getQty()));
+        }
     }
 
     @Override

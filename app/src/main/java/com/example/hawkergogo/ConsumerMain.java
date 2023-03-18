@@ -89,7 +89,7 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToFeaturedRecyclerViewArrayList() {
         // Adding items to ArrayList
-        ConsumerMainItem item = new ConsumerMainItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm");
+        ConsumerMainItem item = new ConsumerMainItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm", 1);
         ConsumerMainItem item2 = new ConsumerMainItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
         ConsumerMainItem item3 = new ConsumerMainItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerMainItemSource = new ArrayList<>();
