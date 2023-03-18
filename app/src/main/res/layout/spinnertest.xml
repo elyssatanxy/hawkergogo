@@ -3,25 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#BAC3F3"
-    tools:context=".ConsumerMain">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodTitleRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="537dp"
         android:layout_weight="0.05"
         android:scrollbars="horizontal"
-        app:layout_constraintEnd_toStartOf="@id/horizontal_spinner"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <xdroid.widget.HorizontalSpinner
-        android:id="@+id/horizontal_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodTitleRecycler" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

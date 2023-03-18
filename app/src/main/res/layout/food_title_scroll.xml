@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textview"
+            android:id="@+id/foodTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -30,7 +30,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/textview"
+            android:layout_below="@id/foodTitle"
             android:layout_marginBottom="10sp"
             android:scaleType="centerCrop"
             card_view:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium" />

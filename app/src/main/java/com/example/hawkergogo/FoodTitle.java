@@ -26,7 +26,6 @@ public class FoodTitle extends AppCompatActivity {
         foodTitleRecycler = (RecyclerView) findViewById(R.id.foodTitleRecycler);
         foodTitleRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
 
-
         // Set LayoutManager on Recycler View
         foodTitleRecycler.setLayoutManager(foodTitleRecyclerViewLayoutManager);
 
@@ -42,7 +41,6 @@ public class FoodTitle extends AppCompatActivity {
 
         // Set adapter on recycler view
         foodTitleRecycler.setAdapter(foodTitlesAdapter);
-
     }
 
     public void addItemsToFoodTitleArrayList() {
@@ -51,8 +49,9 @@ public class FoodTitle extends AppCompatActivity {
         for (String foodOption :getResources().getStringArray(R.array.food_name)) {
             foodTitleItemSource.add(new FoodTitleItem(foodOption, R.drawable.caifan));
         }
-
+        foodTitleItemSource.add(new FoodTitleItem("Add", R.drawable.ic_add_button));
     }
+    
     public void goBack(View view) {
         super.finish();
     }

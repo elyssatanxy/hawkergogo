@@ -22,7 +22,7 @@ public class FoodTitlesAdapter extends RecyclerView.Adapter<FoodTitlesAdapter.My
             super(view);
 
             // initialise TextView with id
-            textView = (TextView) view.findViewById(R.id.textview);
+            textView = (TextView) view.findViewById(R.id.foodTitle);
             imageView = (ImageView) view.findViewById(R.id.img);
         }
     }

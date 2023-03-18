@@ -25,6 +25,7 @@
             android:text="Add Giveaway" />
 
         <LinearLayout
+            android:id="@+id/openCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -91,21 +92,18 @@
                 android:textSize="20sp"
                 android:text="Portions Remaining" />
 
-            <LinearLayout
-                android:layout_width="200sp"
+            <EditText
+                android:id="@+id/editPortions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
-                android:orientation="horizontal"
-                android:background="@drawable/layout_border">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:textSize="17sp"
-                    android:text="10" />
-
-            </LinearLayout>
+                android:paddingLeft="10sp"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:inputType="number"
+                android:hint="Portions"
+                android:maxLength="3"
+                android:background="@drawable/layout_border"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -147,10 +145,9 @@
                 android:textSize="20sp"
                 android:text="Description" />
 
-
-                <!--Scrollable in box in description-->
+            <!--Scrollable in box in description-->
             <EditText
-                android:id="@+id/edit_text"
+                android:id="@+id/editDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10sp"
@@ -170,22 +167,15 @@
                 android:textSize="20sp"
                 android:text="End Time" />
 
-            <LinearLayout
+                <!--Scrollable in box in description-->
+            <EditText
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                android:orientation="horizontal"
-                android:background="@drawable/layout_border">
-
-                <!--Scrollable in box in description-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:textSize="17sp"
-                    android:text="10:00 PM" />
-
-            </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:hint="Select Time"
+                android:padding="10sp"
+                android:background="@drawable/layout_border"/>
 
             <Button
                 android:layout_width="200sp"
