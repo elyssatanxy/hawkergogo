@@ -16,6 +16,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
 
     public class MyView extends RecyclerView.ViewHolder {
         TextView textView;
+        TextView textView2;
         ImageView imageView;
 
         public MyView(View view) {
@@ -24,6 +25,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
             // initialise TextView with id
             textView = (TextView) view.findViewById(R.id.titleText);
             imageView = (ImageView) view.findViewById(R.id.img2);
+            textView2 = (TextView) view.findViewById(R.id.pickupTimeText);
         }
     }
 
@@ -48,6 +50,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
         ConsumerMainItem item = list.get(position);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
+        holder.textView2.setText(item.getTiming());
     }
 
     @Override
