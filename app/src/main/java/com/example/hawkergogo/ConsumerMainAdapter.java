@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapter.MyView> {
-    private List<ConsumerMainItem> list;
+    private List<CartItem> list;
 
     public class MyView extends RecyclerView.ViewHolder {
         TextView textView;
@@ -36,7 +36,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
 
     // Constructor for adapter class
     // which takes a list of String type
-    public ConsumerMainAdapter(List<ConsumerMainItem> horizontalList) {
+    public ConsumerMainAdapter(List<CartItem> horizontalList) {
         this.list = horizontalList;
     }
 
@@ -52,10 +52,10 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
 
     @Override
     public void onBindViewHolder(final MyView holder, final int position) {
-        ConsumerMainItem item = list.get(position);
+        CartItem item = list.get(position);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
-        holder.textView2.setText(item.getTiming());
+        holder.textView2.setText(item.getPickup());
 
         if(item.getQty() != 0) {
             holder.qty.setVisibility(View.VISIBLE);

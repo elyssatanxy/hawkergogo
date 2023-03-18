@@ -6,10 +6,13 @@ public class CartItem {
     private String reserved;
     private String pickup;
 
+    private int qty;
+
     public CartItem(int imageId, String title, String pickup) {
         this.imageId = imageId;
         this.title = title;
         this.pickup = pickup;
+        this.qty = 0;
     }
 
     public CartItem(int imageId, String title, String pickup, String reserved) {
@@ -17,6 +20,14 @@ public class CartItem {
         this.title = title;
         this.pickup = pickup;
         this.reserved = reserved;
+        this.qty = 0;
+    }
+
+    public CartItem(int imageId, String title, String pickup, int qty) {
+        this.imageId = imageId;
+        this.title = title;
+        this.pickup = pickup;
+        this.qty = qty;
     }
 
     public int getImageId() {
@@ -48,5 +59,13 @@ public class CartItem {
     }
     public void setReserved(String reserved) {
         this.reserved = reserved;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

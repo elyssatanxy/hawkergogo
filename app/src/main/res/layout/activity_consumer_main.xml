@@ -57,6 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Hello World"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -65,6 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Let's get some food!"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
@@ -83,6 +85,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.1"
                             android:text="Current Location:"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
@@ -91,7 +94,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.1"
-                            android:text="Chijmes" />
+                            android:text="Chijmes"
+                            android:textColor="@color/black" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -113,6 +117,7 @@
                     android:layout_marginBottom="14sp"
                     android:layout_weight="1"
                     android:text="Featured"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -131,6 +136,7 @@
                     android:layout_marginBottom="14sp"
                     android:layout_weight="1"
                     android:text="Past Orders"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -147,6 +153,7 @@
                     android:layout_marginBottom="14sp"
                     android:layout_weight="1"
                     android:text="More Food"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

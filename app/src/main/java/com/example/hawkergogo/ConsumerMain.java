@@ -16,13 +16,13 @@ public class ConsumerMain extends AppCompatActivity {
     RecyclerView featuredRecycler;
     RecyclerView.LayoutManager featuredRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<ConsumerMainItem> consumerMainItemSource;
+    ArrayList<CartItem> consumerMainItemSource;
     ConsumerMainAdapter consumerMainAdapter;
 
     RecyclerView pastOrdersRecycler;
     RecyclerView.LayoutManager pastOrdersRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout2;
-    ArrayList<ConsumerMainItem> consumerPastOrdersSource;
+    ArrayList<CartItem> consumerPastOrdersSource;
 
     ConsumerMainAdapter pastOrdersAdapter;
 
@@ -89,9 +89,9 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToFeaturedRecyclerViewArrayList() {
         // Adding items to ArrayList
-        ConsumerMainItem item = new ConsumerMainItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm", 1);
-        ConsumerMainItem item2 = new ConsumerMainItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
-        ConsumerMainItem item3 = new ConsumerMainItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
+        CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm", 1);
+        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
+        CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerMainItemSource = new ArrayList<>();
         consumerMainItemSource.add(item);
         consumerMainItemSource.add(item2);
@@ -100,9 +100,9 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToPastOrdersRecycler() {
         // Adding items to ArrayList
-        ConsumerMainItem item = new ConsumerMainItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm");
-        ConsumerMainItem item2 = new ConsumerMainItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
-        ConsumerMainItem item3 = new ConsumerMainItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
+        CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm");
+        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm", 1);
+        CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerPastOrdersSource = new ArrayList<>();
         consumerPastOrdersSource.add(item);
         consumerPastOrdersSource.add(item2);
