@@ -33,7 +33,7 @@
                 android:id="@+id/textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="50dp"
                 android:layout_marginTop="20sp"
                 android:layout_marginBottom="5sp"
                 android:textSize="20sp"
@@ -41,7 +41,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -59,8 +59,27 @@
                     android:textSize="16sp"
                     android:fontFamily="@font/merriweatheritalic"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14sp"
+                android:text="Tap to Repeat"
+                android:fontFamily="@font/merriweatheritalic"/>
+
         </LinearLayout>
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="end"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/repeat"
+        android:onClick="goToAddItem"/>
 
 
 </androidx.cardview.widget.CardView>

@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToSellerHome(View view) {
+        Intent intent = new Intent(MainActivity.this, SellerHome.class);
+        startActivity(intent);
+    }
     public void testingFunc(View view) {
         Intent intent = new Intent(MainActivity.this, FoodTitle.class);
         startActivity(intent);
