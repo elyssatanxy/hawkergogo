@@ -1,5 +1,6 @@
 package com.example.hawkergogo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,7 +16,7 @@ public class SellerHome extends AppCompatActivity{
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
     ArrayList<CartItem> itemsSource;
-    CartItemsAdapter itemsAdapter;
+    PastAdapter itemsAdapter;
 
     RecyclerView ongoingRecycler;
     RecyclerView.LayoutManager ongoingRecyclerViewLayoutManager;
@@ -46,7 +47,7 @@ public class SellerHome extends AppCompatActivity{
         addItemsToOngoingRecyclerViewArrayList();
 
 
-        itemsAdapter = new CartItemsAdapter(itemsSource);
+        itemsAdapter = new PastAdapter(itemsSource);
         ongoingAdapter = new OngoingAdapter(ongoingSource);
 
 
@@ -85,5 +86,10 @@ public class SellerHome extends AppCompatActivity{
 
     public void goBack(View view) {
         super.finish();
+    }
+
+    public void goToAddItem(View view) {
+        Intent intent = new Intent(this, Giveaway.class);
+        startActivity(intent);
     }
 }
