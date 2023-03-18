@@ -26,4 +26,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Giveaway.class);
         startActivity(intent);
     }
+
+    public void testingFunc(View view) {
+        Intent intent = new Intent(MainActivity.this, FoodTitle.class);
+        startActivity(intent);
+    }
 }

@@ -8,7 +8,6 @@
     tools:context="com.example.hawkergogo.MainActivity"
     android:id="@+id/relativelayout">
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -34,5 +33,14 @@
         android:layout_marginBottom="67dp"
         android:onClick="goTofoodOptions"
         android:text="GO TO FOOD OPTIONS" />
+
+    <Button
+        android:id="@+id/testingFunc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="-185dp"
+        android:onClick="testingFunc"
+        android:text="TESTING FUNC" />
 
 </RelativeLayout>
