@@ -8,7 +8,9 @@
     android:layout_height="130sp"
     android:layout_marginBottom="15sp"
     card_view:cardCornerRadius="25sp"
-    card_view:cardElevation="8dp">
+    card_view:cardElevation="8dp"
+    android:clickable="true"
+    android:onClick="showPopup">
 
     <LinearLayout
         android:layout_width="match_parent"

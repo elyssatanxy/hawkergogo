@@ -10,7 +10,9 @@
     android:layout_marginEnd="19sp"
     android:layout_marginBottom="15sp"
     card_view:cardCornerRadius="25sp"
-    card_view:cardElevation="8dp">
+    card_view:cardElevation="8dp"
+    android:clickable="true"
+    android:onClick="showPopup">
 
     <TextView
         android:id="@+id/qty"

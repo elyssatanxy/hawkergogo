@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -91,7 +92,7 @@ public class ConsumerMain extends AppCompatActivity {
     public void addItemsToFeaturedRecyclerViewArrayList() {
         // Adding items to ArrayList
         CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm", 1);
-        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
+        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm", 0);
         CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerMainItemSource = new ArrayList<>();
         consumerMainItemSource.add(item);
@@ -101,7 +102,7 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToPastOrdersRecycler() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm");
+        CartItem item = new CartItem(R.drawable.chickrice, "Khicken Rice - Last 20 Plates!", "9:30pm");
         CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm", 1);
         CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerPastOrdersSource = new ArrayList<>();
