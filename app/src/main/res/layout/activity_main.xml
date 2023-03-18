@@ -35,4 +35,13 @@
         android:onClick="goTofoodOptions"
         android:text="GO TO FOOD OPTIONS" />
 
+    <Button
+        android:id="@+id/sellerHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="0dp"
+        android:onClick="goToSellerHome"
+        android:text="GO TO Seller Home" />
+
 </RelativeLayout>

@@ -26,4 +26,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Giveaway.class);
         startActivity(intent);
     }
+
+    public void goToSellerHome(View view) {
+        Intent intent = new Intent(MainActivity.this, SellerHome.class);
+        startActivity(intent);
+    }
 }

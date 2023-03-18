@@ -18,6 +18,10 @@
             android:name=".ConsumerMain"
             android:exported="false" />
         <activity
+            android:name=".SellerHome"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity
             android:name=".loadingScreen"
             android:exported="true"
             android:label="@string/title_activity_loading_screen"
