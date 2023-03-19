@@ -38,7 +38,7 @@
                     android:layout_width="75sp"
                     android:layout_height="75sp"
                     android:scaleType="centerCrop"
-                    card_view:srcCompat="@drawable/caifan" />
+                    card_view:srcCompat="@drawable/food_caifan" />
             </androidx.cardview.widget.CardView>
 
                 <TextView

@@ -1,14 +1,26 @@
 package com.example.hawkergogo;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import java.util.List;
 
-public class FoodTitlesAdapter extends RecyclerView.Adapter<FoodTitlesAdapter.MyView> {
+public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecyclerViewAdapter.MyView> {
     // Replace CartItem with your item
     private List<FoodTitleItem> list;
 
@@ -17,6 +29,8 @@ public class FoodTitlesAdapter extends RecyclerView.Adapter<FoodTitlesAdapter.My
     public class MyView extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
+
+        CardView cardView;
 
         public MyView(View view) {
             super(view);
@@ -29,7 +43,7 @@ public class FoodTitlesAdapter extends RecyclerView.Adapter<FoodTitlesAdapter.My
 
     // Constructor for adapter class
     // which takes a list of String type
-    public FoodTitlesAdapter(List<FoodTitleItem> horizontalList)
+    public TitleRecyclerViewAdapter(List<FoodTitleItem> horizontalList)
     {
         this.list = horizontalList;
     }

@@ -1,8 +1,5 @@
 package com.example.hawkergogo;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -74,7 +71,7 @@ public class CartPayment extends AppCompatActivity {
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
         CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm", 1);
-        CartItem item2 = new CartItem(R.drawable.caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm", 1);
+        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm", 1);
         itemsSource = new ArrayList<>();
         itemsSource.add(item);
         itemsSource.add(item2);

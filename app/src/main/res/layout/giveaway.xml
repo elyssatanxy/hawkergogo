@@ -15,21 +15,33 @@
         android:background="@drawable/background_producer"
         tools:context="com.example.hawkergogo.Giveaway">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40sp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:text="Add Giveaway" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="45sp"
+            android:layout_marginBottom="20sp">
+
+            <Button
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_marginStart="20sp"
+                android:background="@drawable/back_button"
+                android:onClick="goBack" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:text="Add Giveaway" />
+        </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/openCamera"
+            android:id="@+id/cameraContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="160sp"
             android:orientation="vertical"
-            android:layout_marginTop="15sp"
             android:layout_marginBottom="20sp"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
@@ -42,7 +54,7 @@
                 android:layout_height="70sp"
                 android:layout_marginTop="20sp"
                 android:layout_marginBottom="10sp"
-                app:srcCompat="@drawable/ic_camera" />
+                android:src="@drawable/ic_camera"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,21 +81,31 @@
                 android:textSize="20sp"
                 android:text="Title" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/titleContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:orientation="horizontal"
                 android:background="@drawable/layout_border">
 
-                <Spinner
-                    android:id="@+id/foodTitleSpinner"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/titlePlaceholder"
+                    android:layout_width="290sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:text="Title"
+                    android:textSize="20sp" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/titlePlaceholder"
+                    app:srcCompat="@drawable/ic_options" />
+
+            </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +115,7 @@
                 android:text="Portions Remaining" />
 
             <EditText
-                android:id="@+id/editPortions"
+                android:id="@+id/portionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
@@ -114,6 +136,7 @@
                 android:text="Location" />
 
             <LinearLayout
+                android:id="@+id/locationContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
@@ -125,9 +148,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30sp"
                     android:layout_margin="5sp"
-                    app:srcCompat="@drawable/ic_location" />
+                    android:src="@drawable/ic_location" />
 
                 <TextView
+                    android:id="@+id/locationNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -145,9 +169,8 @@
                 android:textSize="20sp"
                 android:text="Description" />
 
-            <!--Scrollable in box in description-->
             <EditText
-                android:id="@+id/editDescription"
+                android:id="@+id/descriptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10sp"
@@ -157,6 +180,7 @@
                 android:hint="Type Description"
                 android:maxLength="1000"
                 android:gravity="top"
+                android:scrollbars="vertical"
                 android:background="@drawable/layout_border"/>
 
             <TextView
@@ -167,21 +191,21 @@
                 android:textSize="20sp"
                 android:text="End Time" />
 
-                <!--Scrollable in box in description-->
             <EditText
-                android:id="@+id/time"
+                android:id="@+id/timeInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:hint="Select Time"
                 android:padding="10sp"
+                android:layout_marginBottom="30sp"
                 android:background="@drawable/layout_border"/>
 
             <Button
+                android:id="@+id/addListing"
                 android:layout_width="200sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30sp"
                 android:layout_marginBottom="30sp"
                 android:layout_marginStart="30sp"
                 android:layout_marginEnd="25sp"

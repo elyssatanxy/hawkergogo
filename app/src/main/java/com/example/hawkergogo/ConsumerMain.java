@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -114,7 +113,7 @@ public class ConsumerMain extends AppCompatActivity {
     public void addItemsToMoreFoodRecyclerViewArrayList() {
         // Adding items to ArrayList
         CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
-        CartItem item2 = new CartItem(R.drawable.caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
+        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
         moreFoodSource = new ArrayList<>();
         moreFoodSource.add(item);
         moreFoodSource.add(item2);
