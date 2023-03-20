@@ -37,6 +37,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
         TextView textViewTitle;
         TextView textViewPickup;
         ImageView imageView;
+        TextView qty;
         CardView cardView;
 
         public MyView(View view) {
@@ -46,6 +47,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
             textViewTitle = (TextView) view.findViewById(R.id.textview);
             textViewPickup = (TextView) view.findViewById(R.id.pickup);
             imageView = (ImageView) view.findViewById(R.id.img);
+            qty = (TextView) view.findViewById(R.id.qty);
             cardView = (CardView) view.findViewById(R.id.cardview);
         }
     }
@@ -73,6 +75,12 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getPickup());
         holder.imageView.setImageResource(item.getImageId());
+
+        if(item.getQty() != 0) {
+            holder.qty.setVisibility(View.VISIBLE);
+            holder.qty.setText(Integer.toString(item.getQty()));
+        }
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +141,24 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
                             dialog_quantity.setText("" + (item.getQty() - 1));
                             item.setQty(item.getQty() - 1);
                         }
+                    }
+                });
+
+                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
+                dialog_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.qty.setText(Integer.toString(item.getQty()));
+
+                        if (item.getQty() >= 1) {
+                            holder.qty.setVisibility(View.VISIBLE);
+                        }
+
+                        if (item.getQty() == 0) {
+                            holder.qty.setVisibility(View.GONE);
+                        }
+
+                        myDialog.dismiss();
                     }
                 });
             }

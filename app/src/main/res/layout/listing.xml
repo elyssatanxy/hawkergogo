@@ -172,6 +172,7 @@
 
 
         <Button
+            android:id="@+id/add_to_cart"
             android:layout_width="200sp"
             android:layout_height="60sp"
             android:layout_gravity="center"

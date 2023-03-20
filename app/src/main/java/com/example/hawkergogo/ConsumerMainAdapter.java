@@ -1,6 +1,9 @@
 package com.example.hawkergogo;
 
+import static android.content.Intent.getIntent;
+
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -13,10 +16,6 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +139,24 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                             dialog_quantity.setText("" + (item.getQty() - 1));
                             item.setQty(item.getQty() - 1);
                         }
+                    }
+                });
+
+                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
+                dialog_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.qty.setText(Integer.toString(item.getQty()));
+
+                        if (item.getQty() >= 1) {
+                            holder.qty.setVisibility(View.VISIBLE);
+                        }
+
+                        if (item.getQty() == 0) {
+                            holder.qty.setVisibility(View.GONE);
+                        }
+
+                        myDialog.dismiss();
                     }
                 });
             }

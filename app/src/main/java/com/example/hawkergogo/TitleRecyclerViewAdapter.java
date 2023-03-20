@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,6 +39,7 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
             // initialise TextView with id
             textView = (TextView) view.findViewById(R.id.foodTitle);
             imageView = (ImageView) view.findViewById(R.id.img);
+            cardView = (CardView) view.findViewById(R.id.foodOption);
         }
     }
 
@@ -64,6 +66,19 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
         FoodTitleItem item = list.get(position);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if  (holder.textView.getText().toString().equals("Add Item")) {
+                    v.getRootView().setVisibility(View.GONE);
+                    Dialog newDialog = new Dialog(v.getRootView().getContext());
+                    newDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    newDialog.setContentView(R.layout.addtitle);
+                    newDialog.show();
+                }
+            }
+        });
     }
 
     @Override
