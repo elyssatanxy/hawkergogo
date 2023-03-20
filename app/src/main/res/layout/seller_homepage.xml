@@ -1,92 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
-        tools:context=".MainActivity">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="54dp"
-            android:layout_height="74dp"
-            app:srcCompat="@drawable/cs206_profileicon"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"/>
+        <RelativeLayout
 
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweatherblack"
-            android:text="Hello Andy!"
-            android:textSize="24sp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:id="@+id/submessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweatherregular"
-            android:text="Let's waste less"
-            android:textSize="16sp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="45dp"/>
-
-        <TextView
-            android:id="@+id/ongoing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweatherblack"
-            android:text="Ongoing Giveaways"
-            android:textSize="24sp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="100dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ongoingRecycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp" />
-
-        <TextView
-            android:id="@+id/past"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweatherblack"
-            android:text="Past Giveaways"
-            android:textSize="24dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="450dp"/>
-
-        <TextView
-            android:id="@+id/pastmessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweatherregular"
-            android:text="Quickly repeat previous giveaways"
-            android:textSize="16dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="480dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemsRecycler"
-            android:scrollbars="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="510dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_background"
+            tools:context=".MainActivity">
 
-    </RelativeLayout>
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/cs206_profileicon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/greeting1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello World"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/greeting2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Let's get some food!"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="Current Location:"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="Chijmes" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ongoing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherblack"
+                android:text="Ongoing Giveaways"
+                android:textSize="24sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="100dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ongoingRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/past"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherblack"
+                android:text="Past Giveaways"
+                android:textSize="24dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="450dp"/>
+
+            <TextView
+                android:id="@+id/pastmessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweatherregular"
+                android:text="Quickly repeat previous giveaways"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="480dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemsRecycler"
+                android:scrollbars="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="510dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:menu="@menu/bottom_nav_menu"/>
+
+</LinearLayout>

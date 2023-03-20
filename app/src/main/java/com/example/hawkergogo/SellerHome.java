@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 public class SellerHome extends AppCompatActivity{
@@ -92,4 +94,6 @@ public class SellerHome extends AppCompatActivity{
         Intent intent = new Intent(this, Giveaway.class);
         startActivity(intent);
     }
+
+
 }
