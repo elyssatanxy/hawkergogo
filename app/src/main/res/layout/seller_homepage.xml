@@ -46,17 +46,17 @@
                         android:id="@+id/greeting1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hello World"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:text="Hello Andy"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/merriweatherblack" />
 
                     <TextView
                         android:id="@+id/greeting2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Let's get some food!"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/merriweatherregular"/>
 
                 </LinearLayout>
 
@@ -71,17 +71,16 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
                         android:text="Current Location:"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/merriweatherbold" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:text="Chijmes" />
+                        android:text="Chijmes"
+                        android:fontFamily="@font/merriweatheritalic"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -145,6 +144,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        android:background="@color/white"
+        app:itemIconTint="@color/bottom_nav_selector"
+        app:itemTextColor="@color/bottom_nav_selector"
+        app:itemIconSize="45dp"
         app:menu="@menu/bottom_nav_menu"/>
 
 </LinearLayout>

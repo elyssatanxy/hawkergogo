@@ -2,13 +2,14 @@ package com.example.hawkergogo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.*;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,6 @@ public class SellerHome extends AppCompatActivity{
     LinearLayoutManager horizontalLayout;
     ArrayList<CartItem> ongoingSource;
     OngoingAdapter ongoingAdapter;
-
-
 
 
     @Override
@@ -62,6 +61,31 @@ public class SellerHome extends AppCompatActivity{
         // Set adapter on recycler view
         itemsRecycler.setAdapter(itemsAdapter);
         ongoingRecycler.setAdapter(ongoingAdapter);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.dashboard:
+                        //start the Home activity
+                        Intent dashboardIntent = new Intent(SellerHome.this, SellerHome.class);
+                        startActivity(dashboardIntent);
+                        break;
+                    case R.id.add_item:
+                        //start the Destination activity
+                        Intent addIntent = new Intent(SellerHome.this, Giveaway.class);
+                        startActivity(addIntent);
+                        break;
+                    case R.id.profile:
+                        //start the Profile activity
+                        Intent profileIntent = new Intent(SellerHome.this, ConsumerMain.class);
+                        startActivity(profileIntent);
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
