@@ -112,8 +112,8 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToMoreFoodRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm", 0);
-        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm", 1);
+        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
+        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
         moreFoodSource = new ArrayList<>();
         moreFoodSource.add(item);
         moreFoodSource.add(item2);

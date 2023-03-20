@@ -29,6 +29,7 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
     // extends RecyclerView.ViewHolder
     public class MyView extends RecyclerView.ViewHolder {
         TextView textView;
+        TextView titleInput;
         ImageView imageView;
 
         CardView cardView;
@@ -38,6 +39,7 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
 
             // initialise TextView with id
             textView = (TextView) view.findViewById(R.id.foodTitle);
+            titleInput = (TextView) view.findViewById(R.id.titlePlaceholder);
             imageView = (ImageView) view.findViewById(R.id.img);
             cardView = (CardView) view.findViewById(R.id.foodOption);
         }
@@ -76,6 +78,8 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
                     newDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     newDialog.setContentView(R.layout.addtitle);
                     newDialog.show();
+                } else {
+                    holder.titleInput.setText(item.getTitle());
                 }
             }
         });

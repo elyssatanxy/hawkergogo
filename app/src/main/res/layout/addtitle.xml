@@ -46,7 +46,8 @@
             android:layout_height="50sp"
             android:background="@drawable/rounded_button_grey"
             android:textSize="15sp"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:onClick="cancelTitle" />
 
         <Button
             android:id="@+id/addButton"

@@ -10,6 +10,8 @@
         <item>Nasi Lemak</item>
         <item>Prata</item>
     </string-array>
+    <string name="locationstring">Maxwell Food Centre</string>
+    <string name="chickenricedesc">Fragrant chicken rice topped with our signature steamed chicken. Come by and try it out! Remember to take our chili sauce it would send you Khickin!</string>
     <string name="title_activity_loading_screen">loadingScreen</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

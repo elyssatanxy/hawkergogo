@@ -91,8 +91,8 @@ public class SellerHome extends AppCompatActivity{
 
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
-        CartItem item2 = new CartItem(R.drawable.chickenrice, "Khicken Rice -  Last 10 Plates!", "10:00 pm");
+        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
+        CartItem item2 = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice -  Last 10 Plates!", "10:00 pm");
         itemsSource = new ArrayList<>();
         itemsSource.add(item);
         itemsSource.add(item2);
@@ -103,8 +103,8 @@ public class SellerHome extends AppCompatActivity{
 
     public void addItemsToOngoingRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickenrice, "Khicken Rice - Last 20 Plates!", "10:00 pm", "3/20");
-        CartItem item2 = new CartItem(R.drawable.rice, "Khicken Rice -  Hainanese Rice", "10:00 pm", "5/10");
+        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "10:00 pm", "3/20");
+        CartItem item2 = new CartItem(R.drawable.sell_rice, "Khicken Rice -  Hainanese Rice", "10:00 pm", "5/10");
         ongoingSource = new ArrayList<>();
         ongoingSource.add(item);
         ongoingSource.add(item2);
@@ -116,6 +116,14 @@ public class SellerHome extends AppCompatActivity{
 
     public void goToAddItem(View view) {
         Intent intent = new Intent(this, Giveaway.class);
+//        Bundle extras = new Bundle();
+//        extras.putString("cameraInput","sell_chickenrice");
+//        extras.putString("titleInput","Khicken Rice - Last 10 Plates!");
+//        extras.putInt("portionInput",10);
+//        extras.putString("locationInput", getResources().getString(R.string.locationstring));
+//        extras.putString("descriptionInput", getResources().getString(R.string.chickenricedesc));
+//        extras.putString("timeInput","10:00 PM");
+//        intent.putExtras(extras);
         startActivity(intent);
     }
 
