@@ -79,7 +79,8 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
                     newDialog.setContentView(R.layout.addtitle);
                     newDialog.show();
                 } else {
-                    holder.titleInput.setText(item.getTitle());
+                    //holder.titleInput.setText(item.getTitle());
+                    Giveaway.setText(item.getTitle());
                 }
             }
         });

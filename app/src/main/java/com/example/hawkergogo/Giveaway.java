@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -31,6 +32,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Giveaway extends AppCompatActivity{
+    static String staticText;
+    public static void setText(String text) {
+        staticText = text;
+    }
 
     RecyclerView foodTitleRecycler;
     RecyclerView.LayoutManager foodTitleRecyclerViewLayoutManager;
@@ -52,7 +57,7 @@ public class Giveaway extends AppCompatActivity{
             public void onClick(View v) {
                 openCamera.removeAllViewsInLayout();
                 float scale = getResources().getDisplayMetrics().density;
-                int dpAsPixels = (int) (10*scale + 0.5f);
+                int dpAsPixels = (int) (10 * scale + 0.5f);
                 RelativeLayout rootLayout = new RelativeLayout(Giveaway.this);
                 rootLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -96,6 +101,14 @@ public class Giveaway extends AppCompatActivity{
                         foodDialog.dismiss();
                     }
                 });
+
+                foodDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        TextView titleInput = (TextView) findViewById(R.id.titlePlaceholder);
+                        titleInput.setText(staticText);
+                    }
+                });
             }
         });
 
@@ -131,15 +144,15 @@ public class Giveaway extends AppCompatActivity{
                         } else if (hour == 0) {
                             hour += 12;
                             timeSet = "AM";
-                        } else if (hour == 12){
+                        } else if (hour == 12) {
                             timeSet = "PM";
-                        }else{
+                        } else {
                             timeSet = "AM";
                         }
 
                         String min = "";
                         if (minutes < 10)
-                            min = "0" + minutes ;
+                            min = "0" + minutes;
                         else
                             min = String.valueOf(minutes);
 
@@ -168,6 +181,7 @@ public class Giveaway extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
     }
 
     public void addItemsToFoodTitleArrayList() {
