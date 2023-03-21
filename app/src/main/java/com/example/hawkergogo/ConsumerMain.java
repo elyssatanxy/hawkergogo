@@ -10,7 +10,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class ConsumerMain extends AppCompatActivity {
     RecyclerView featuredRecycler;
@@ -46,6 +59,50 @@ public class ConsumerMain extends AppCompatActivity {
         });
 
 
+        // Call api to fetch the data
+        String url = "http://10.0.2.2:3000/listings";
+        JsonArrayRequest  jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    // Adding items to RecyclerView.
+                    addItemsToFeaturedRecyclerViewArrayList(response);
+                    addItemsToMoreFoodRecyclerViewArrayList(response);
+
+                    consumerMainAdapter = new ConsumerMainAdapter(consumerMainItemSource);
+                    pastOrdersAdapter = new ConsumerMainAdapter(consumerPastOrdersSource);
+                    moreFoodAdapter = new CartItemsAdapter(moreFoodSource);
+
+                    // Set Horizontal Layout Manager
+                    // for Recycler view
+                    horizontalLayout = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.HORIZONTAL, false);
+                    featuredRecycler.setLayoutManager(horizontalLayout);
+
+                    horizontalLayout2 = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.HORIZONTAL, false);
+                    pastOrdersRecycler.setLayoutManager(horizontalLayout2);
+
+                    verticalLayout = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.VERTICAL, false);
+                    moreFoodRecycler.setLayoutManager(verticalLayout);
+
+                    // Set adapter on recycler view
+                    featuredRecycler.setAdapter(consumerMainAdapter);
+                    pastOrdersRecycler.setAdapter(pastOrdersAdapter);
+                    moreFoodRecycler.setAdapter(moreFoodAdapter);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                System.out.println("Error! API couldn't be reached");
+            }
+
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+
         // initialisation with id's
         featuredRecycler = (RecyclerView) findViewById(R.id.featuredRecycler);
         featuredRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -60,57 +117,41 @@ public class ConsumerMain extends AppCompatActivity {
         featuredRecycler.setLayoutManager(featuredRecyclerViewLayoutManager);
         pastOrdersRecycler.setLayoutManager(pastOrdersRecyclerViewLayoutManager);
         moreFoodRecycler.setLayoutManager(moreFoodRecyclerViewLayoutManager);
-
-        // Adding items to RecyclerView.
-        addItemsToFeaturedRecyclerViewArrayList();
-        addItemsToPastOrdersRecycler();
-        addItemsToMoreFoodRecyclerViewArrayList();
-
-        consumerMainAdapter = new ConsumerMainAdapter(consumerMainItemSource);
-        pastOrdersAdapter = new ConsumerMainAdapter(consumerPastOrdersSource);
-        moreFoodAdapter = new CartItemsAdapter(moreFoodSource);
-
-        // Set Horizontal Layout Manager
-        // for Recycler view
-        horizontalLayout = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.HORIZONTAL, false);
-        featuredRecycler.setLayoutManager(horizontalLayout);
-
-        horizontalLayout2 = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.HORIZONTAL, false);
-        pastOrdersRecycler.setLayoutManager(horizontalLayout2);
-
-        verticalLayout = new LinearLayoutManager(ConsumerMain.this, LinearLayoutManager.VERTICAL, false);
-        moreFoodRecycler.setLayoutManager(verticalLayout);
-
-        // Set adapter on recycler view
-        featuredRecycler.setAdapter(consumerMainAdapter);
-        pastOrdersRecycler.setAdapter(pastOrdersAdapter);
-        moreFoodRecycler.setAdapter(moreFoodAdapter);
-
     }
 
-    public void addItemsToFeaturedRecyclerViewArrayList() {
+    public void addItemsToFeaturedRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm", 1);
-        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm", 0);
-        CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
+        LocalDate dateNow = LocalDate.now();
+        System.out.println(dateNow);
         consumerMainItemSource = new ArrayList<>();
-        consumerMainItemSource.add(item);
-        consumerMainItemSource.add(item2);
-        consumerMainItemSource.add(item3);
-    }
-
-    public void addItemsToPastOrdersRecycler() {
-        // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickrice, "Khicken Rice - Last 20 Plates!", "9:30pm");
-        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm", 1);
-        CartItem item3 = new CartItem(R.drawable.gpay, "Some placeholder for testing", "1:00pm");
         consumerPastOrdersSource = new ArrayList<>();
-        consumerPastOrdersSource.add(item);
-        consumerPastOrdersSource.add(item2);
-        consumerPastOrdersSource.add(item3);
+        for (int i = 0; i<dataList.length(); i++) {
+            JSONObject listItem = null;
+            try {
+                listItem = dataList.getJSONObject(i);
+                int id = listItem.getInt("id");
+                String title = listItem.getString("title");
+                String picture = listItem.getString("picture");
+                String description = listItem.getString("description");
+                String endtime = listItem.getString("endtime");
+                String date = listItem.getString("date");
+                String location = listItem.getString("location");
+                String portionremaining = listItem.getString("portionremaining");
+                LocalDate pastDate = LocalDate.parse(date);
+                if (dateNow.isAfter(pastDate)){
+                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime);
+                    consumerPastOrdersSource.add(item);
+                } else {
+                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime, portionremaining);
+                    consumerMainItemSource.add(item);
+                }
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
-    public void addItemsToMoreFoodRecyclerViewArrayList() {
+    public void addItemsToMoreFoodRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
         CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
         CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");

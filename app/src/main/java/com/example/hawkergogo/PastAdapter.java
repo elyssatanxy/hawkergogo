@@ -18,6 +18,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         TextView textViewTitle;
         TextView textViewPickup;
         ImageView imageView;
+        ImageView repeatButton;
 
         public MyView(View view) {
             super(view);
@@ -26,6 +27,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
             textViewTitle = (TextView) view.findViewById(R.id.textview);
             textViewPickup = (TextView) view.findViewById(R.id.pickup);
             imageView = (ImageView) view.findViewById(R.id.img);
+            repeatButton = (ImageView) view.findViewById(R.id.repeatbutton);
         }
     }
 
@@ -51,10 +53,19 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getPickup());
         holder.imageView.setImageResource(item.getImageId());
+
+        holder.repeatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // GO TO ADD ITEM + PASS ALL THE DATA
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+
 }

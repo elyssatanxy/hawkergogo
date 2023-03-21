@@ -18,8 +18,23 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.app.TimePickerDialog;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Giveaway extends AppCompatActivity{
     static String staticText;
@@ -179,9 +194,39 @@ public class Giveaway extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 // Send function
-                Lisiting newListing = new Lisiting(R.drawable.food_caifan, "Cai Fan", Integer.getInteger(portionInput.getText().toString()),
-                        openLocationName.toString(), descriptionInput.getText().toString(), timeInput.getText().toString());
-                Giveaway.super.finish();
+                String url = "http://10.0.2.2:3000/listings";
+
+                // Adding data
+                Map<String, String> params = new HashMap();
+                params.put("title", selectedTitle.getText().toString());
+                params.put("portionremaining", portionInput.getText().toString());
+                params.put("location", openLocationName.getText().toString());
+                params.put("picture", "food_caifan");
+                params.put("description", descriptionInput.getText().toString());
+                params.put("endtime", timeInput.getText().toString());
+                params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+                JSONObject parameters = new JSONObject(params);
+
+                JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Giveaway.super.finish();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                queue.add(jsonRequest);
+
+//                Lisiting newListing = new Lisiting(R.drawable.food_caifan, "Cai Fan", Integer.getInteger(portionInput.getText().toString()),
+//                        openLocationName.toString(), descriptionInput.getText().toString(), timeInput.getText().toString());
+//
+//                Giveaway.super.finish();
             }
         });
 
