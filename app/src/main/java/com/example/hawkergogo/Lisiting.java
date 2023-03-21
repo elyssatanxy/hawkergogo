@@ -1,20 +1,30 @@
 package com.example.hawkergogo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Lisiting {
+public class Lisiting implements Serializable {
+    int image;
     String title;
     int portions;
     String location;
     String description;
-    Date time;
+    String time;
 
-    public Lisiting(String title, int portions, String location, String description, Date time) {
+    public Lisiting(int image, String title, int portions, String location, String description, String time) {
+        this.image = image;
         this.title = title;
         this.portions = portions;
         this.location = location;
         this.description = description;
         this.time = time;
+    }
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getTitle() {
@@ -49,11 +59,11 @@ public class Lisiting {
         this.description = description;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

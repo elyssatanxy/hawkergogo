@@ -1,32 +1,22 @@
 package com.example.hawkergogo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.app.TimePickerDialog;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,7 +31,6 @@ public class Giveaway extends AppCompatActivity{
     RecyclerView.LayoutManager foodTitleRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
     TitleRecyclerViewAdapter titleRecyclerViewAdapter;
-
     ArrayList<FoodTitleItem> foodTitleItemSource;
     int [] foodImages = {R.drawable.food_caifan, R.drawable.food_chickenrice, R.drawable.food_fishballnood, R.drawable.food_nasilemat, R.drawable.food_rotiplate};
 
@@ -50,29 +39,33 @@ public class Giveaway extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.giveaway);
 
-        // =========== CAMERA INPUT () ===========
         LinearLayout openCamera = (LinearLayout) findViewById(R.id.cameraContainer);
+        TextView selectedTitle = findViewById(R.id.titlePlaceholder);
+        EditText portionInput = (EditText) findViewById(R.id.portionInput);
+        TextView openLocationName = (TextView) findViewById(R.id.locationNameInput);
+        EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+        EditText timeInput = (EditText) findViewById(R.id.timeInput);
+
+        if (getIntent().hasExtra("reGiveAway")) {
+            // get the Serializable data model class with the details in it
+            Lisiting item = (Lisiting) getIntent().getSerializableExtra("reGiveAway");
+            setImagePrefill(item.getImage());
+            selectedTitle.setText(item.getTitle());
+            portionInput.setText(String.valueOf(item.getPortions()));
+            openLocationName.setText(item.getLocation());
+            descriptionInput.setText(item.getDescription());
+            timeInput.setText(item.getTime());
+        }
+
+        // =========== CAMERA INPUT () ===========
         openCamera.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openCamera.removeAllViewsInLayout();
-                float scale = getResources().getDisplayMetrics().density;
-                int dpAsPixels = (int) (10 * scale + 0.5f);
-                RelativeLayout rootLayout = new RelativeLayout(Giveaway.this);
-                rootLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                ImageView ivOne = new ImageView(Giveaway.this);
-                ivOne.setImageResource(R.drawable.food_caifan);
-                ivOne.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
-                ivOne.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                ivOne.setLayoutParams(params);
-                openCamera.addView(ivOne);
+            public void onClick(View view) {
+                setImagePrefill(R.drawable.food_caifan);
             }
         });
 
         // =========== TITLE INPUT ===========
-        TextView selectedTitle = findViewById(R.id.titlePlaceholder);
         RelativeLayout titleContainer = findViewById(R.id.titleContainer);
         selectedTitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,11 +95,26 @@ public class Giveaway extends AppCompatActivity{
                     }
                 });
 
-                foodDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                Button closeButton = foodDialog.findViewById(R.id.cancelButton);
+                closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
+                    public void onClick(View v) {
+                        foodDialog.dismiss();
+                    }
+                });
+
+                Button addButton = foodDialog.findViewById(R.id.addButton);
+                EditText newTitle = foodDialog.findViewById(R.id.descriptionInput);
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         TextView titleInput = (TextView) findViewById(R.id.titlePlaceholder);
-                        titleInput.setText(staticText);
+                        if(!newTitle.getText().toString().equals("")){
+                            titleInput.setText(newTitle.getText().toString());
+                        } else {
+                            titleInput.setText(staticText);
+                        }
+                        foodDialog.dismiss();
                     }
                 });
             }
@@ -114,7 +122,6 @@ public class Giveaway extends AppCompatActivity{
 
         // =========== LOCATION INPUT () ===========
         LinearLayout openLocation = (LinearLayout) findViewById(R.id.locationContainer);
-        TextView openLocationName = (TextView) findViewById(R.id.locationNameInput);
         openLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,7 +131,6 @@ public class Giveaway extends AppCompatActivity{
 
         // =========== TIME INPUT ===========
         //  initiate the edit text
-        EditText timeInput = (EditText) findViewById(R.id.timeInput);
         timeInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,35 +174,52 @@ public class Giveaway extends AppCompatActivity{
 
         // =========== SEND DATA ===========
 
-        EditText portionInput = (EditText) findViewById(R.id.portionInput);
-        EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
-
         Button addButton = (Button) findViewById(R.id.addListing);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String dataInput = portionInput.getText().toString() + " " + descriptionInput.getText().toString() + " " + timeInput.getText();
-                Intent intent = new Intent(getApplicationContext(), testData.class);
-                intent.putExtra("data_input", dataInput);
-                startActivity(intent);
+                // Send function
+                Lisiting newListing = new Lisiting(R.drawable.food_caifan, "Cai Fan", Integer.getInteger(portionInput.getText().toString()),
+                        openLocationName.toString(), descriptionInput.getText().toString(), timeInput.getText().toString());
+                Giveaway.super.finish();
             }
         });
 
     }
 
     public void addItemsToFoodTitleArrayList() {
-        // data
         String [] foodTitleArray = getResources().getStringArray(R.array.food_name);
 
-        // add items to local arraylist
         foodTitleItemSource = new ArrayList<>();
         for (int i = 0; i < foodTitleArray.length; i++) {
             foodTitleItemSource.add(new FoodTitleItem(foodTitleArray[i], foodImages[i]));
         }
-        foodTitleItemSource.add(new FoodTitleItem("Add Item", R.drawable.ic_add_button));
+//        foodTitleItemSource.add(new FoodTitleItem("Add Item", R.drawable.ic_add_button));
+    }
+
+    public void setImagePrefill(int imgName){
+        LinearLayout openCamera = (LinearLayout) findViewById(R.id.cameraContainer);
+
+        openCamera.removeAllViewsInLayout();
+        float scale = getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (10*scale + 0.5f);
+        RelativeLayout rootLayout = new RelativeLayout(Giveaway.this);
+        rootLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+        //to retrieve image in res/drawable and set image in ImageView
+        ImageView ivOne = new ImageView(Giveaway.this);
+        ivOne.setImageResource(imgName);
+        ivOne.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
+        ivOne.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        ivOne.setLayoutParams(params);
+        openCamera.addView(ivOne);
     }
 
     public void goBack(View view) {
         super.finish();
     }
+
+
 }

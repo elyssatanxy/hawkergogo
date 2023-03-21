@@ -1,5 +1,6 @@
 package com.example.hawkergogo;
 
+import static androidx.core.content.ContextCompat.getColor;
 import static androidx.core.content.ContextCompat.startActivity;
 
 import androidx.cardview.widget.CardView;
@@ -24,6 +25,8 @@ import java.util.List;
 public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecyclerViewAdapter.MyView> {
     // Replace CartItem with your item
     private List<FoodTitleItem> list;
+    private int selectedItem = -1;
+    static String addNewTitle;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -65,23 +68,43 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
     @Override
     public void onBindViewHolder(final MyView holder, final int position)
     {
-        FoodTitleItem item = list.get(position);
+        int inputPosition = holder.getAdapterPosition();
+        FoodTitleItem item = list.get(inputPosition);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if  (holder.textView.getText().toString().equals("Add Item")) {
-                    v.getRootView().setVisibility(View.GONE);
-                    Dialog newDialog = new Dialog(v.getRootView().getContext());
-                    newDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    newDialog.setContentView(R.layout.addtitle);
-                    newDialog.show();
-                } else {
-                    //holder.titleInput.setText(item.getTitle());
-                    Giveaway.setText(item.getTitle());
-                }
+                Giveaway.setText(item.getTitle());
+//                if  (holder.textView.getText().toString().equals("Add Item")) {
+//                    v.getRootView().setVisibility(View.GONE);
+//                    Dialog newDialog = new Dialog(v.getRootView().getContext());
+//                    newDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                    newDialog.setContentView(R.layout.foodtitle_options);
+//
+//                    Button addButton = (Button) newDialog.findViewById(R.id.addButton);
+//                    addButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            EditText newTiteInput = (EditText) newDialog.findViewById(R.id.descriptionInput);
+//                            addNewTitle = newTiteInput.getEditableText().toString();
+//                            Giveaway.setText(addNewTitle);
+//                        }
+//                    });
+//
+//                    Button cancelButton = (Button) newDialog.findViewById(R.id.cancelButton);
+//                    cancelButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            newDialog.dismiss();
+//                        }
+//                    });
+//                    newDialog.show();
+//                } else {
+//                    //holder.titleInput.setText(item.getTitle());
+//                    Giveaway.setText(item.getTitle());
+//                }
             }
         });
     }

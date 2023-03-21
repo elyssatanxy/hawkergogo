@@ -116,16 +116,10 @@ public class SellerHome extends AppCompatActivity{
 
     public void goToAddItem(View view) {
         Intent intent = new Intent(this, Giveaway.class);
-//        Bundle extras = new Bundle();
-//        extras.putString("cameraInput","sell_chickenrice");
-//        extras.putString("titleInput","Khicken Rice - Last 10 Plates!");
-//        extras.putInt("portionInput",10);
-//        extras.putString("locationInput", getResources().getString(R.string.locationstring));
-//        extras.putString("descriptionInput", getResources().getString(R.string.chickenricedesc));
-//        extras.putString("timeInput","10:00 PM");
-//        intent.putExtras(extras);
+        Lisiting oldListing = new Lisiting(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
+                getResources().getString(R.string.chickenricedesc), "10:00 PM");
+        intent.putExtra("reGiveAway", oldListing);
         startActivity(intent);
     }
-
 
 }
