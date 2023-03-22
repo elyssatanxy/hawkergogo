@@ -137,12 +137,13 @@ public class ConsumerMain extends AppCompatActivity {
                 String date = listItem.getString("date");
                 String location = listItem.getString("location");
                 String portionremaining = listItem.getString("portionremaining");
+                System.out.println(portionremaining);
                 LocalDate pastDate = LocalDate.parse(date);
                 if (dateNow.isAfter(pastDate)){
                     CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime);
                     consumerPastOrdersSource.add(item);
                 } else {
-                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime, portionremaining);
+                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime, Integer.parseInt(portionremaining));
                     consumerMainItemSource.add(item);
                 }
             } catch (JSONException e) {

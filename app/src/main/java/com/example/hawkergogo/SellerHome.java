@@ -180,7 +180,7 @@ public class SellerHome extends AppCompatActivity{
 
     public void goToAddItem(View view) {
         Intent intent = new Intent(this, Giveaway.class);
-        Lisiting oldListing = new Lisiting(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
+        Listing oldListing = new Listing(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
                 getResources().getString(R.string.chickenricedesc), "10:00 PM");
         intent.putExtra("reGiveAway", oldListing);
         startActivity(intent);

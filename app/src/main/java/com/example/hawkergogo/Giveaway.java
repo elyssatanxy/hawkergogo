@@ -63,7 +63,7 @@ public class Giveaway extends AppCompatActivity{
 
         if (getIntent().hasExtra("reGiveAway")) {
             // get the Serializable data model class with the details in it
-            Lisiting item = (Lisiting) getIntent().getSerializableExtra("reGiveAway");
+            Listing item = (Listing) getIntent().getSerializableExtra("reGiveAway");
             setImagePrefill(item.getImage());
             selectedTitle.setText(item.getTitle());
             portionInput.setText(String.valueOf(item.getPortions()));

@@ -7,6 +7,7 @@ public class CartItem {
     private String pickup;
 
     private int qty;
+    private int count;
 
     public CartItem(int imageId, String title, String pickup) {
         this.imageId = imageId;
@@ -44,6 +45,13 @@ public class CartItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    public int getCount() {
+        return this.count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getPickup() {

@@ -1,9 +1,8 @@
 package com.example.hawkergogo;
 
 import java.io.Serializable;
-import java.util.Date;
 
-public class Lisiting implements Serializable {
+public class Listing implements Serializable {
     int image;
     String title;
     int portions;
@@ -11,7 +10,7 @@ public class Lisiting implements Serializable {
     String description;
     String time;
 
-    public Lisiting(int image, String title, int portions, String location, String description, String time) {
+    public Listing(int image, String title, int portions, String location, String description, String time) {
         this.image = image;
         this.title = title;
         this.portions = portions;

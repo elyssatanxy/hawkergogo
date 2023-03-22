@@ -36,7 +36,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
         ImageView imageView;
 
         TextView qty;
-
+        TextView count;
         CardView cardView;
 
         public MyView(View view) {
@@ -46,6 +46,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
             textView = (TextView) view.findViewById(R.id.titleText);
             imageView = (ImageView) view.findViewById(R.id.img2);
             textView2 = (TextView) view.findViewById(R.id.pickupTimeText);
+            count = (TextView) view.findViewById(R.id.count);
             qty = (TextView) view.findViewById(R.id.qty);
             cardView = (CardView) view.findViewById(R.id.itemCard);
         }
@@ -74,9 +75,9 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
         holder.imageView.setImageResource(item.getImageId());
         holder.textView2.setText(item.getPickup());
 
-        if(item.getQty() != 0) {
-            holder.qty.setVisibility(View.VISIBLE);
-            holder.qty.setText(Integer.toString(item.getQty()));
+        if(item.getCount() != 0) {
+            holder.count.setVisibility(View.VISIBLE);
+            holder.count.setText(Integer.toString(item.getCount()));
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -84,17 +85,20 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
             public void onClick(View v) {
                 myDialog = new Dialog(v.getRootView().getContext());
                 myDialog.setContentView(R.layout.listing);
-
                 TextView dialog_title = myDialog.findViewById(R.id.listing_title);
                 TextView dialog_pickup = myDialog.findViewById(R.id.listing_pickup);
-                // TextView dialog_portions = myDialog.findViewById(R.id.listing_portions);
+//                TextView dialog_location = myDialog.findViewById(R.id.listing_location);
+                TextView dialog_portions = myDialog.findViewById(R.id.listing_portions);
                 TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
                 ImageView dialog_img = myDialog.findViewById(R.id.listing_img);
 
                 dialog_title.setText(item.getTitle());
                 dialog_pickup.setText(item.getPickup());
-                // dialog_portions.setText(item.getQty());
-                dialog_quantity.setText("" + item.getQty());
+//                dialog_location.setText(item.getLocation());
+
+                dialog_portions.setText("" + item.getQty());
+
+                dialog_quantity.setText("" + item.getCount());
                 dialog_img.setImageResource(item.getImageId());
 
                 recRecycler = (RecyclerView) myDialog.findViewById(R.id.recRecycler);
@@ -125,8 +129,10 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                     @Override
                     public void onClick(View v) {
                         TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-                        dialog_quantity.setText("" + (item.getQty() + 1));
-                        item.setQty(item.getQty() + 1);
+                        if (item.getCount() < item.getQty()) {
+                            dialog_quantity.setText("" + (item.getCount() + 1));
+                            item.setCount(item.getCount() + 1);
+                        }
                     }
                 });
 
@@ -135,9 +141,9 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                     @Override
                     public void onClick(View v) {
                         TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-                        if (item.getQty() >= 1) {
-                            dialog_quantity.setText("" + (item.getQty() - 1));
-                            item.setQty(item.getQty() - 1);
+                        if (item.getCount() >= 1) {
+                            dialog_quantity.setText("" + (item.getCount() - 1));
+                            item.setCount(item.getCount() - 1);
                         }
                     }
                 });
