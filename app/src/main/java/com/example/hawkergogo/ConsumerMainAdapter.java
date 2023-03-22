@@ -133,6 +133,12 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                             dialog_quantity.setText("" + (item.getCount() + 1));
                             item.setCount(item.getCount() + 1);
                         }
+                        if(item.getCount() != 0) {
+                            holder.count.setVisibility(View.VISIBLE);
+                            holder.count.setText(Integer.toString(item.getCount()));
+                        } else {
+                            holder.count.setVisibility(View.INVISIBLE);
+                        }
                     }
                 });
 
@@ -144,6 +150,12 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                         if (item.getCount() >= 1) {
                             dialog_quantity.setText("" + (item.getCount() - 1));
                             item.setCount(item.getCount() - 1);
+                        }
+                        if(item.getCount() != 0) {
+                            holder.count.setVisibility(View.VISIBLE);
+                            holder.count.setText(Integer.toString(item.getCount()));
+                        } else {
+                            holder.count.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
