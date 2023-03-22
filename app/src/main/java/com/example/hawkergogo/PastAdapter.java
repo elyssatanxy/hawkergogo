@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
     // Replace CartItem with your item
-    private List<CartItem> list;
+    private List<Lisiting> list;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -31,7 +31,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
 
     // Constructor for adapter class
     // which takes a list of String type
-    public PastAdapter(List<CartItem> horizontalList) {
+    public PastAdapter(List<Lisiting> horizontalList) {
         this.list = horizontalList;
     }
 
@@ -47,10 +47,10 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
 
     @Override
     public void onBindViewHolder(final MyView holder, final int position) {
-        CartItem item = list.get(position);
+        Lisiting item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
-        holder.textViewPickup.setText(item.getPickup());
-        holder.imageView.setImageResource(item.getImageId());
+        holder.textViewPickup.setText(item.getTime());
+        holder.imageView.setImageResource(item.getImage());
     }
 
     @Override

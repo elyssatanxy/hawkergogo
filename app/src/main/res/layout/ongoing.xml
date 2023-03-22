@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text=" portions reserved"
+                    android:text=" portions"
                     android:fontFamily="@font/merriweatheritalic"/>
 
             </LinearLayout>

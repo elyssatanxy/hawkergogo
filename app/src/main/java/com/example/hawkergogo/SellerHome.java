@@ -18,13 +18,13 @@ public class SellerHome extends AppCompatActivity{
     RecyclerView itemsRecycler;
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
-    ArrayList<CartItem> itemsSource;
+    ArrayList<Lisiting> itemsSource;
     PastAdapter itemsAdapter;
 
     RecyclerView ongoingRecycler;
     RecyclerView.LayoutManager ongoingRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<CartItem> ongoingSource;
+    ArrayList<Lisiting> ongoingSource;
     OngoingAdapter ongoingAdapter;
 
 
@@ -91,8 +91,10 @@ public class SellerHome extends AppCompatActivity{
 
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
-        CartItem item2 = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice -  Last 10 Plates!", "10:00 pm");
+        Lisiting item = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
+        Lisiting item2 = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
         itemsSource = new ArrayList<>();
         itemsSource.add(item);
         itemsSource.add(item2);
@@ -103,8 +105,10 @@ public class SellerHome extends AppCompatActivity{
 
     public void addItemsToOngoingRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "10:00 pm", "3/20");
-        CartItem item2 = new CartItem(R.drawable.sell_rice, "Khicken Rice -  Hainanese Rice", "10:00 pm", "5/10");
+        Lisiting item = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
+        Lisiting item2 = new Lisiting(R.drawable.sell_rice, "Khicken Rice - Hainanese Rice", 10,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
         ongoingSource = new ArrayList<>();
         ongoingSource.add(item);
         ongoingSource.add(item2);

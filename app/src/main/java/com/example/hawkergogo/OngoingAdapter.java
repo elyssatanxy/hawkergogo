@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import java.util.List;
 
 public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
-    private List<CartItem> list;
+    private List<Lisiting> list;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -34,7 +34,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
 
     // Constructor for adapter class
     // which takes a list of String type
-    public OngoingAdapter(List<CartItem> horizontalList)
+    public OngoingAdapter(List<Lisiting> horizontalList)
     {
         this.list = horizontalList;
     }
@@ -52,11 +52,11 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
     @Override
     public void onBindViewHolder(final OngoingAdapter.MyView holder, final int position)
     {
-        CartItem item = list.get(position);
+        Lisiting item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
-        holder.textViewReserved.setText(item.getReserved());
-        holder.textViewPickup.setText(item.getPickup());
-        holder.imageView.setImageResource(item.getImageId());
+        holder.textViewReserved.setText(String.valueOf(item.getPortions()));
+        holder.textViewPickup.setText(item.getTime());
+        holder.imageView.setImageResource(item.getImage());
     }
 
     @Override
