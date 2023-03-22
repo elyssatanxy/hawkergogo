@@ -7,6 +7,7 @@
     android:layout_width="350dp"
     android:layout_height="270sp"
     android:layout_margin="15dp"
+    android:onClick="goToAddItem"
     card_view:cardCornerRadius="25sp"
     card_view:cardElevation="8dp">
 
