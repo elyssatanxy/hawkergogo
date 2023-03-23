@@ -26,11 +26,6 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".testData"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-        <activity
             android:name=".LoadingScreen"
             android:exported="true"
             android:label="@string/title_activity_loading_screen"
