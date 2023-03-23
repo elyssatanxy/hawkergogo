@@ -9,19 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.*;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SellerHome extends AppCompatActivity{
@@ -29,60 +18,20 @@ public class SellerHome extends AppCompatActivity{
     RecyclerView itemsRecycler;
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
-    ArrayList<Listing> itemsSource;
+    ArrayList<Lisiting> itemsSource;
     PastAdapter itemsAdapter;
 
     RecyclerView ongoingRecycler;
     RecyclerView.LayoutManager ongoingRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<Listing> ongoingSource;
+    ArrayList<Lisiting> ongoingSource;
     OngoingAdapter ongoingAdapter;
 
-    boolean firstVisit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_homepage);
-
-        firstVisit =  true;
-
-        // Call api to fetch the data
-        String url = "http://10.0.2.2:3000/listings";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    // Adding items to RecyclerView.
-                    addItemsToItemsRecyclerViewArrayList(response);
-//                    addItemsToOngoingRecyclerViewArrayList(response);
-
-                    itemsAdapter = new PastAdapter(itemsSource);
-                    ongoingAdapter = new OngoingAdapter(ongoingSource);
-
-
-                    verticalLayout = new LinearLayoutManager(SellerHome.this, LinearLayoutManager.VERTICAL, false);
-                    itemsRecycler.setLayoutManager(verticalLayout);
-
-                    horizontalLayout = new LinearLayoutManager(SellerHome.this, LinearLayoutManager.HORIZONTAL, false);
-                    ongoingRecycler.setLayoutManager(horizontalLayout);
-
-                    // Set adapter on recycler view
-                    itemsRecycler.setAdapter(itemsAdapter);
-                    ongoingRecycler.setAdapter(ongoingAdapter);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                System.out.println("Error! API couldn't be reached");
-            }
-
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
 
         itemsRecycler = (RecyclerView) findViewById(R.id.itemsRecycler);
         itemsRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -94,6 +43,24 @@ public class SellerHome extends AppCompatActivity{
         itemsRecycler.setLayoutManager(itemsRecyclerViewLayoutManager);
         ongoingRecycler.setLayoutManager(ongoingRecyclerViewLayoutManager);
 
+        // Adding items to RecyclerView.
+        addItemsToItemsRecyclerViewArrayList();
+        addItemsToOngoingRecyclerViewArrayList();
+
+
+        itemsAdapter = new PastAdapter(itemsSource);
+        ongoingAdapter = new OngoingAdapter(ongoingSource);
+
+
+        verticalLayout = new LinearLayoutManager(SellerHome.this, LinearLayoutManager.VERTICAL, false);
+        itemsRecycler.setLayoutManager(verticalLayout);
+
+        horizontalLayout = new LinearLayoutManager(SellerHome.this, LinearLayoutManager.HORIZONTAL, false);
+        ongoingRecycler.setLayoutManager(horizontalLayout);
+
+        // Set adapter on recycler view
+        itemsRecycler.setAdapter(itemsAdapter);
+        ongoingRecycler.setAdapter(ongoingAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,81 +87,40 @@ public class SellerHome extends AppCompatActivity{
             }
         });
 
-
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (firstVisit == true) {
-            firstVisit = false;
-        } else {
-            finish();
-            startActivity(getIntent());
-        }
-    }
-
-
-
-    public void addItemsToItemsRecyclerViewArrayList(JSONArray dataList) {
+    public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
-        // Adding items to ArrayList
-        LocalDate dateNow = LocalDate.now();
+        Lisiting item = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
+        Lisiting item2 = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
         itemsSource = new ArrayList<>();
+        itemsSource.add(item);
+        itemsSource.add(item2);
+        itemsSource.add(item2);
+        itemsSource.add(item);
+        itemsSource.add(item2);
+    }
+
+    public void addItemsToOngoingRecyclerViewArrayList() {
+        // Adding items to ArrayList
+        Lisiting item = new Lisiting(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", 20,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
+        Lisiting item2 = new Lisiting(R.drawable.sell_rice, "Khicken Rice - Hainanese Rice", 10,
+                "Waterlooloo", "Yummy Chicken Rice", "10:00pm");
         ongoingSource = new ArrayList<>();
-        for (int i = 0; i<dataList.length(); i++) {
-            JSONObject listItem = null;
-            try {
-                listItem = dataList.getJSONObject(i);
-                int id = listItem.getInt("id");
-                String title = listItem.getString("title");
-                String picture = listItem.getString("picture");
-                String description = listItem.getString("description");
-                String endtime = listItem.getString("endtime");
-                String date = listItem.getString("date");
-                String location = listItem.getString("location");
-                String portionremaining = listItem.getString("portionremaining");
-                LocalDate pastDate = LocalDate.parse(date);
-                Listing item = new Listing(getResources().getIdentifier(picture, "drawable", getPackageName()), title, Integer.parseInt(portionremaining), location, description, endtime);
-                item.setId(id);
-                if (dateNow.isAfter(pastDate)){
-                    itemsSource.add(item);
-                } else {
-                    ongoingSource.add(item);
-                }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        /*
-        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
-        CartItem item2 = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice -  Last 10 Plates!", "10:00 pm");
-        itemsSource = new ArrayList<>();
-        itemsSource.add(item);
-        itemsSource.add(item2);
-        itemsSource.add(item2);
-        itemsSource.add(item);
-        itemsSource.add(item2);
-        */
+        ongoingSource.add(item);
+        ongoingSource.add(item2);
     }
-
-//    public void addItemsToOngoingRecyclerViewArrayList() {
-//        // Adding items to ArrayList
-//        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "10:00 pm", "3/20");
-//        CartItem item2 = new CartItem(R.drawable.sell_rice, "Khicken Rice -  Hainanese Rice", "10:00 pm", "5/10");
-//        ongoingSource = new ArrayList<>();
-//        ongoingSource.add(item);
-//        ongoingSource.add(item2);
-//    }
 
     public void goBack(View view) {
         super.finish();
     }
 
     public void goToAddItem(View view) {
-        Intent intent = new Intent(SellerHome.this, Giveaway.class);
-        Listing oldListing = new Listing(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
+        Intent intent = new Intent(this, Giveaway.class);
+        Lisiting oldListing = new Lisiting(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
                 getResources().getString(R.string.chickenricedesc), "10:00 PM");
         intent.putExtra("reGiveAway", oldListing);
         startActivity(intent);
