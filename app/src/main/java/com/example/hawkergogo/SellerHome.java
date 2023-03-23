@@ -154,8 +154,14 @@ public class SellerHome extends AppCompatActivity{
                 String date = listItem.getString("date");
                 String location = listItem.getString("location");
                 String portionremaining = listItem.getString("portionremaining");
+                int portion;
+                try {
+                    portion =Integer.parseInt(portionremaining);
+                }catch (Exception e)  {
+                    portion = 0;
+                }
                 LocalDate pastDate = LocalDate.parse(date);
-                Listing item = new Listing(getResources().getIdentifier(picture, "drawable", getPackageName()), title, Integer.parseInt(portionremaining), location, description, endtime);
+                Listing item = new Listing(getResources().getIdentifier(picture, "drawable", getPackageName()), title, portion, location, description, endtime);
                 item.setId(id);
                 if (dateNow.isAfter(pastDate)){
                     itemsSource.add(item);
