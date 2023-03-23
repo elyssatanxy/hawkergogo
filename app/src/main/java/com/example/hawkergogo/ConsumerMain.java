@@ -122,7 +122,6 @@ public class ConsumerMain extends AppCompatActivity {
     public void addItemsToFeaturedRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
         LocalDate dateNow = LocalDate.now();
-        System.out.println(dateNow);
         consumerMainItemSource = new ArrayList<>();
         consumerPastOrdersSource = new ArrayList<>();
         for (int i = 0; i<dataList.length(); i++) {
@@ -137,7 +136,6 @@ public class ConsumerMain extends AppCompatActivity {
                 String date = listItem.getString("date");
                 String location = listItem.getString("location");
                 String portionremaining = listItem.getString("portionremaining");
-                System.out.println(portionremaining);
                 LocalDate pastDate = LocalDate.parse(date);
                 if (dateNow.isAfter(pastDate)){
                     CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime);

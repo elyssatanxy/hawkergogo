@@ -1,17 +1,21 @@
 package com.example.hawkergogo;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
     // Replace CartItem with your item
-    private List<CartItem> list;
-
+    private List<Listing> list;
+    private Context context;
     // View Holder class which
     // extends RecyclerView.ViewHolder
     public class MyView extends RecyclerView.ViewHolder {
@@ -33,7 +37,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
 
     // Constructor for adapter class
     // which takes a list of String type
-    public PastAdapter(List<CartItem> horizontalList) {
+    public PastAdapter(List<Listing> horizontalList) {
         this.list = horizontalList;
     }
 
@@ -49,15 +53,18 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
 
     @Override
     public void onBindViewHolder(final MyView holder, final int position) {
-        CartItem item = list.get(position);
+        Listing item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
-        holder.textViewPickup.setText(item.getPickup());
-        holder.imageView.setImageResource(item.getImageId());
+        holder.textViewPickup.setText(item.getTime());
+        holder.imageView.setImageResource(item.getImage());
 
         holder.repeatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // GO TO ADD ITEM + PASS ALL THE DATA
+                Intent intent= new Intent(v.getContext(), Giveaway.class);
+                intent.putExtra("repeatOrder", item);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().getApplicationContext().startActivity(intent);
             }
         });
     }

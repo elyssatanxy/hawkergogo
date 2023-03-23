@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +49,10 @@ public class Giveaway extends AppCompatActivity{
     LinearLayoutManager horizontalLayout;
     TitleRecyclerViewAdapter titleRecyclerViewAdapter;
     ArrayList<FoodTitleItem> foodTitleItemSource;
+
+    private boolean edit;
+
+    private int id;
     int [] foodImages = {R.drawable.food_caifan, R.drawable.food_chickenrice, R.drawable.food_fishballnood, R.drawable.food_nasilemat, R.drawable.food_rotiplate};
 
     @Override
@@ -60,10 +66,23 @@ public class Giveaway extends AppCompatActivity{
         TextView openLocationName = (TextView) findViewById(R.id.locationNameInput);
         EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         EditText timeInput = (EditText) findViewById(R.id.timeInput);
+        Button buttonAdd = (Button) findViewById(R.id.addListing);
 
-        if (getIntent().hasExtra("reGiveAway")) {
+        if(getIntent().hasExtra("repeatOrder")){
+            Listing item = (Listing) getIntent().getSerializableExtra("repeatOrder");
+            setImagePrefill(item.getImage());
+            selectedTitle.setText(item.getTitle());
+            portionInput.setText(String.valueOf(item.getPortions()));
+            openLocationName.setText(item.getLocation());
+            descriptionInput.setText(item.getDescription());
+            timeInput.setText(item.getTime());
+        }
+        else if (getIntent().hasExtra("editOrder")) {
+            edit = true;
+            buttonAdd.setText("Save");
             // get the Serializable data model class with the details in it
-            Listing item = (Listing) getIntent().getSerializableExtra("reGiveAway");
+            Listing item = (Listing) getIntent().getSerializableExtra("editOrder");
+            id = item.getId();
             setImagePrefill(item.getImage());
             selectedTitle.setText(item.getTitle());
             portionInput.setText(String.valueOf(item.getPortions()));
@@ -76,6 +95,13 @@ public class Giveaway extends AppCompatActivity{
         openCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try{
+                    Intent cameraIntent = new Intent();
+                    cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(cameraIntent);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 setImagePrefill(R.drawable.food_caifan);
             }
         });
@@ -194,9 +220,8 @@ public class Giveaway extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 // Send function
-                String url = "http://10.0.2.2:3000/listings";
-
                 // Adding data
+                String url = "http://10.0.2.2:3000/listings";
                 Map<String, String> params = new HashMap();
                 params.put("title", selectedTitle.getText().toString());
                 params.put("portionremaining", portionInput.getText().toString());
@@ -205,23 +230,41 @@ public class Giveaway extends AppCompatActivity{
                 params.put("description", descriptionInput.getText().toString());
                 params.put("endtime", timeInput.getText().toString());
                 params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                if (edit == true){
+                    params.put("id", String.valueOf(id));
+                    JSONObject parameters = new JSONObject(params);
+                    JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.PUT, url, parameters, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Giveaway.super.finish();
+                            Giveaway.super.onRestart();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                        }
+                    });
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    queue.add(jsonRequest);
+                    edit = false;
+                } else {
+                    JSONObject parameters = new JSONObject(params);
+                    JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Giveaway.super.finish();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                        }
+                    });
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    queue.add(jsonRequest);
+                }
 
-                JSONObject parameters = new JSONObject(params);
-
-                JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Giveaway.super.finish();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                });
-
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                queue.add(jsonRequest);
 
 //                Lisiting newListing = new Lisiting(R.drawable.food_caifan, "Cai Fan", Integer.getInteger(portionInput.getText().toString()),
 //                        openLocationName.toString(), descriptionInput.getText().toString(), timeInput.getText().toString());

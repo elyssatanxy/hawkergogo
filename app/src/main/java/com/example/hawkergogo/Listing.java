@@ -10,6 +10,8 @@ public class Listing implements Serializable {
     String description;
     String time;
 
+    int id;
+
     public Listing(int image, String title, int portions, String location, String description, String time) {
         this.image = image;
         this.title = title;
@@ -18,6 +20,14 @@ public class Listing implements Serializable {
         this.description = description;
         this.time = time;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId() {
+        return id;
+    }
+
     public int getImage() {
         return image;
     }

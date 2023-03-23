@@ -29,21 +29,22 @@ public class SellerHome extends AppCompatActivity{
     RecyclerView itemsRecycler;
     RecyclerView.LayoutManager itemsRecyclerViewLayoutManager;
     LinearLayoutManager verticalLayout;
-    ArrayList<CartItem> itemsSource;
+    ArrayList<Listing> itemsSource;
     PastAdapter itemsAdapter;
 
     RecyclerView ongoingRecycler;
     RecyclerView.LayoutManager ongoingRecyclerViewLayoutManager;
     LinearLayoutManager horizontalLayout;
-    ArrayList<CartItem> ongoingSource;
+    ArrayList<Listing> ongoingSource;
     OngoingAdapter ongoingAdapter;
 
-
+    boolean firstVisit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_homepage);
 
+        firstVisit =  true;
 
         // Call api to fetch the data
         String url = "http://10.0.2.2:3000/listings";
@@ -119,13 +120,26 @@ public class SellerHome extends AppCompatActivity{
             }
         });
 
+
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (firstVisit == true) {
+            firstVisit = false;
+        } else {
+            finish();
+            startActivity(getIntent());
+        }
+    }
+
+
 
     public void addItemsToItemsRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
         // Adding items to ArrayList
         LocalDate dateNow = LocalDate.now();
-        System.out.println(dateNow);
         itemsSource = new ArrayList<>();
         ongoingSource = new ArrayList<>();
         for (int i = 0; i<dataList.length(); i++) {
@@ -141,11 +155,11 @@ public class SellerHome extends AppCompatActivity{
                 String location = listItem.getString("location");
                 String portionremaining = listItem.getString("portionremaining");
                 LocalDate pastDate = LocalDate.parse(date);
+                Listing item = new Listing(getResources().getIdentifier(picture, "drawable", getPackageName()), title, Integer.parseInt(portionremaining), location, description, endtime);
+                item.setId(id);
                 if (dateNow.isAfter(pastDate)){
-                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime);
                     itemsSource.add(item);
                 } else {
-                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime, portionremaining);
                     ongoingSource.add(item);
                 }
             } catch (JSONException e) {
@@ -179,7 +193,7 @@ public class SellerHome extends AppCompatActivity{
     }
 
     public void goToAddItem(View view) {
-        Intent intent = new Intent(this, Giveaway.class);
+        Intent intent = new Intent(SellerHome.this, Giveaway.class);
         Listing oldListing = new Listing(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
                 getResources().getString(R.string.chickenricedesc), "10:00 PM");
         intent.putExtra("reGiveAway", oldListing);
