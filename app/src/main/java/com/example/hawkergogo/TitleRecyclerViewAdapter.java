@@ -35,6 +35,7 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
         TextView titleInput;
         ImageView imageView;
 
+        EditText descriptionInput;
         CardView cardView;
 
         public MyView(View view) {
@@ -45,6 +46,7 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
             titleInput = (TextView) view.findViewById(R.id.titlePlaceholder);
             imageView = (ImageView) view.findViewById(R.id.img);
             cardView = (CardView) view.findViewById(R.id.foodOption);
+            descriptionInput = (EditText) view.findViewById(R.id.descriptionInput);
         }
     }
 
@@ -72,39 +74,12 @@ public class TitleRecyclerViewAdapter extends RecyclerView.Adapter<TitleRecycler
         FoodTitleItem item = list.get(inputPosition);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageResource(item.getImageId());
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText descriptionInput = (EditText) v.getRootView().findViewById(R.id.descriptionInput);
+                descriptionInput.setText(item.getTitle());
                 Giveaway.setText(item.getTitle());
-//                if  (holder.textView.getText().toString().equals("Add Item")) {
-//                    v.getRootView().setVisibility(View.GONE);
-//                    Dialog newDialog = new Dialog(v.getRootView().getContext());
-//                    newDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                    newDialog.setContentView(R.layout.foodtitle_options);
-//
-//                    Button addButton = (Button) newDialog.findViewById(R.id.addButton);
-//                    addButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            EditText newTiteInput = (EditText) newDialog.findViewById(R.id.descriptionInput);
-//                            addNewTitle = newTiteInput.getEditableText().toString();
-//                            Giveaway.setText(addNewTitle);
-//                        }
-//                    });
-//
-//                    Button cancelButton = (Button) newDialog.findViewById(R.id.cancelButton);
-//                    cancelButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            newDialog.dismiss();
-//                        }
-//                    });
-//                    newDialog.show();
-//                } else {
-//                    //holder.titleInput.setText(item.getTitle());
-//                    Giveaway.setText(item.getTitle());
-//                }
             }
         });
     }

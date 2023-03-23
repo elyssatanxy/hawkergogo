@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
@@ -19,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,6 +120,33 @@ public class ConsumerMain extends AppCompatActivity {
         featuredRecycler.setLayoutManager(featuredRecyclerViewLayoutManager);
         pastOrdersRecycler.setLayoutManager(pastOrdersRecyclerViewLayoutManager);
         moreFoodRecycler.setLayoutManager(moreFoodRecyclerViewLayoutManager);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView_Consumer);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.dashboardC:
+                        //start the Home activity
+                        Intent dashboardIntent = new Intent(ConsumerMain.this, ConsumerMain.class);
+                        finish();
+                        startActivity(dashboardIntent);
+                        break;
+                    case R.id.addCart:
+                        //start the Destination activity
+                        Intent addIntent = new Intent(ConsumerMain.this, CartPayment.class);
+                        startActivity(addIntent);
+                        break;
+                    case R.id.switchProfile:
+                        //start the Profile activity
+                        Intent profileIntent = new Intent(ConsumerMain.this, SellerHome.class);
+                        finish();
+                        startActivity(profileIntent);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     public void addItemsToFeaturedRecyclerViewArrayList(JSONArray dataList) {
