@@ -104,6 +104,9 @@ public class Giveaway extends AppCompatActivity{
             // Set the image in imageview for display
             imageView.setImageBitmap(photo);
         }
+
+        // upload image
+        uploadImage();
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -316,7 +319,7 @@ public class Giveaway extends AppCompatActivity{
         openLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLocationName.setText("SMU School of Economics");
+                openLocationName.setText("SMU School of Computing and Info ...");
             }
         });
 
@@ -364,11 +367,10 @@ public class Giveaway extends AppCompatActivity{
 
         // =========== SEND DATA ===========
 
-        Button addButton = (Button) findViewById(R.id.addListing);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        Button sendButton = (Button) findViewById(R.id.addListing);
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImage();
                 // Send function
                 // Adding data
                 String url = "http://100.24.242.101:3000/listings";
@@ -380,9 +382,6 @@ public class Giveaway extends AppCompatActivity{
                 params.put("description", descriptionInput.getText().toString());
                 params.put("endtime", timeInput.getText().toString());
                 params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
-                // upload image
-                uploadImage();
 
                 if (edit == true){
                     params.put("id", String.valueOf(id));
