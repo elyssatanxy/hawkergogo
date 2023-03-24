@@ -161,7 +161,7 @@ public class SellerHome extends AppCompatActivity{
                     portion = 0;
                 }
                 LocalDate pastDate = LocalDate.parse(date);
-                Listing item = new Listing(getResources().getIdentifier(picture, "drawable", getPackageName()), title, portion, location, description, endtime);
+                Listing item = new Listing(picture, title, portion, location, description, endtime);
                 item.setId(id);
                 if (dateNow.isAfter(pastDate)){
                     itemsSource.add(item);
@@ -179,12 +179,12 @@ public class SellerHome extends AppCompatActivity{
         super.finish();
     }
 
-    public void goToAddItem(View view) {
-        Intent intent = new Intent(SellerHome.this, Giveaway.class);
-        Listing oldListing = new Listing(R.drawable.sell_chickenrice,"Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
-                getResources().getString(R.string.chickenricedesc), "10:00 PM");
-        intent.putExtra("reGiveAway", oldListing);
-        startActivity(intent);
-    }
+//    public void goToAddItem(View view) {
+//        Intent intent = new Intent(SellerHome.this, Giveaway.class);
+//        Listing oldListing = new Listing("x","Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
+//                getResources().getString(R.string.chickenricedesc), "10:00 PM");
+//        intent.putExtra("reGiveAway", oldListing);
+//        startActivity(intent);
+//    }
 
 }

@@ -2,18 +2,15 @@ package com.example.hawkergogo;
 
 import static com.example.hawkergogo.R.id.searchBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +23,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class ConsumerMain extends AppCompatActivity {
@@ -174,10 +174,10 @@ public class ConsumerMain extends AppCompatActivity {
                     portion = 0;
                 }
                 if (dateNow.isAfter(pastDate) || portion == 0){
-                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime);
+                    CartItem item = new CartItem(picture, title, endtime);
                     consumerPastOrdersSource.add(item);
                 } else {
-                    CartItem item = new CartItem(getResources().getIdentifier(picture, "drawable", getPackageName()), title, endtime, portion);
+                    CartItem item = new CartItem(picture, title, endtime, portion);
                     consumerMainItemSource.add(item);
                 }
             } catch (JSONException e) {
@@ -188,8 +188,8 @@ public class ConsumerMain extends AppCompatActivity {
 
     public void addItemsToMoreFoodRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm");
-        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
+        CartItem item = new CartItem("https://www.innit.com/public/recipes/images/1033246--742330450-en-US-0_s1000.jpg", "Khicken Rice - Last 20 Plates!", "9:30 pm");
+        CartItem item2 = new CartItem("https://burpple-3.imgix.net/foods/4953a157939f12e66921893991_original.", "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
         moreFoodSource = new ArrayList<>();
         moreFoodSource.add(item);
         moreFoodSource.add(item2);

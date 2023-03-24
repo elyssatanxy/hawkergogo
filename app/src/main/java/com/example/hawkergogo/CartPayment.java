@@ -70,8 +70,8 @@ public class CartPayment extends AppCompatActivity {
 
     public void addItemsToItemsRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.sell_chickenrice, "Khicken Rice - Last 20 Plates!", "9:30 pm", 1);
-        CartItem item2 = new CartItem(R.drawable.food_caifan, "Lee's Cai Fan -  Sweet and ...", "10:00 pm", 1);
+        CartItem item = new CartItem("https://www.innit.com/public/recipes/images/1033246--742330450-en-US-0_s1000.jpg", "Knicken Rice - Last 20 Plates!", "9:30pm");
+        CartItem item2 = new CartItem("https://burpple-3.imgix.net/foods/4953a157939f12e66921893991_original.", "Bob's Western Diner's - 3 more pl...", "10:00pm");
         itemsSource = new ArrayList<>();
         itemsSource.add(item);
         itemsSource.add(item2);

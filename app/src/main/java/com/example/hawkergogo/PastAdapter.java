@@ -1,21 +1,24 @@
 package com.example.hawkergogo;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.LayoutInflater;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
     // Replace CartItem with your item
     private List<Listing> list;
     private Context context;
+
     // View Holder class which
     // extends RecyclerView.ViewHolder
     public class MyView extends RecyclerView.ViewHolder {
@@ -23,6 +26,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         TextView textViewPickup;
         ImageView imageView;
         ImageView repeatButton;
+
 
         public MyView(View view) {
             super(view);
@@ -47,7 +51,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
                 = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.past, parent, false);
-
+        context = parent.getContext();
         return new MyView(itemView);
     }
 
@@ -56,7 +60,11 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         Listing item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getTime());
-        holder.imageView.setImageResource(item.getImage());
+        System.out.println(item.getImage());
+        System.out.println("******");
+//        holder.imageView.setImageResource(item.getImage());
+        Glide.with(context).load(item.getImage()).into(holder.imageView);
+
 
         holder.repeatButton.setOnClickListener(new View.OnClickListener() {
             @Override

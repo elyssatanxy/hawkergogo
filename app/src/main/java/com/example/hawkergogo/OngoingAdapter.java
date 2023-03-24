@@ -1,14 +1,17 @@
 package com.example.hawkergogo;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.LayoutInflater;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
@@ -51,7 +54,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
                 = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.ongoing, parent, false);
-
+        context = parent.getContext();
         return new OngoingAdapter.MyView(itemView);
     }
 
@@ -62,7 +65,8 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewReserved.setText(String.valueOf(item.getPortions()));
         holder.textViewPickup.setText(item.getTime());
-        holder.imageView.setImageResource(item.getImage());
+//        holder.imageView.setImageResource(item.getImage());
+        Glide.with(context).load(item.getImage()).into(holder.imageView);
         holder.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

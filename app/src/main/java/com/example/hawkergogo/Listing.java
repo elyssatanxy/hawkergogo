@@ -3,7 +3,7 @@ package com.example.hawkergogo;
 import java.io.Serializable;
 
 public class Listing implements Serializable {
-    int image;
+    String image;
     String title;
     int portions;
     String location;
@@ -12,7 +12,7 @@ public class Listing implements Serializable {
 
     int id;
 
-    public Listing(int image, String title, int portions, String location, String description, String time) {
+    public Listing(String image, String title, int portions, String location, String description, String time) {
         this.image = image;
         this.title = title;
         this.portions = portions;
@@ -28,11 +28,11 @@ public class Listing implements Serializable {
         return id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

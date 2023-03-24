@@ -1,7 +1,7 @@
 package com.example.hawkergogo;
 
 public class CartItem {
-    private int imageId;
+    private String imageId;
     private String title;
     private String reserved;
     private String pickup;
@@ -9,14 +9,14 @@ public class CartItem {
     private int qty;
     private int count;
 
-    public CartItem(int imageId, String title, String pickup) {
+    public CartItem(String imageId, String title, String pickup) {
         this.imageId = imageId;
         this.title = title;
         this.pickup = pickup;
         this.qty = 0;
     }
 
-    public CartItem(int imageId, String title, String pickup, String reserved) {
+    public CartItem(String imageId, String title, String pickup, String reserved) {
         this.imageId = imageId;
         this.title = title;
         this.pickup = pickup;
@@ -24,18 +24,18 @@ public class CartItem {
         this.qty = 0;
     }
 
-    public CartItem(int imageId, String title, String pickup, int qty) {
+    public CartItem(String imageId, String title, String pickup, int qty) {
         this.imageId = imageId;
         this.title = title;
         this.pickup = pickup;
         this.qty = qty;
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         this.imageId = imageId;
     }
 

@@ -1,21 +1,21 @@
 package com.example.hawkergogo;
 
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.LayoutInflater;
 
-import org.w3c.dom.Text;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,8 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
     LinearLayoutManager recHorizontalLayout;
     ArrayList<CartItem> recSource;
     ConsumerMainAdapter recAdapter;
+
+    private Context context;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -65,7 +67,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
                 = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.cart_item_scroll, parent, false);
-
+        context = parent.getContext();
         return new MyView(itemView);
     }
 
@@ -74,7 +76,8 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
         CartItem item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getPickup());
-        holder.imageView.setImageResource(item.getImageId());
+//        holder.imageView.setImageResource(item.getImageId());
+        Glide.with(context).load(item.getImageId()).into(holder.imageView);
 
         if(item.getQty() != 0) {
             holder.qty.setVisibility(View.VISIBLE);
@@ -97,7 +100,9 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
                 dialog_pickup.setText(item.getPickup());
                 // dialog_portions.setText(item.getQty());
                 dialog_quantity.setText("" + item.getQty());
-                dialog_img.setImageResource(item.getImageId());
+//                dialog_img.setImageResource(item.getImageId());
+                Glide.with(context).load(item.getImageId()).into(dialog_img);
+
 
                 recRecycler = (RecyclerView) myDialog.findViewById(R.id.recRecycler);
 
@@ -173,8 +178,8 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
 
     public void addItemsToRecRecyclerViewArrayList() {
         // Adding items to ArrayList
-        CartItem item = new CartItem(R.drawable.chickrice, "Knicken Rice - Last 20 Plates!", "9:30pm");
-        CartItem item2 = new CartItem(R.drawable.westernfood, "Bob's Western Diner's - 3 more pl...", "10:00pm");
+        CartItem item = new CartItem("https://www.innit.com/public/recipes/images/1033246--742330450-en-US-0_s1000.jpg", "Knicken Rice - Last 20 Plates!", "9:30pm");
+        CartItem item2 = new CartItem("https://burpple-3.imgix.net/foods/4953a157939f12e66921893991_original.", "Bob's Western Diner's - 3 more pl...", "10:00pm");
         recSource = new ArrayList<>();
         recSource.add(item);
         recSource.add(item2);
