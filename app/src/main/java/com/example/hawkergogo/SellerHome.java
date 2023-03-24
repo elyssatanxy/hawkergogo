@@ -47,7 +47,7 @@ public class SellerHome extends AppCompatActivity{
         firstVisit =  true;
 
         // Call api to fetch the data
-        String url = "http://10.0.2.2:3000/listings";
+        String url = "http://100.24.242.101:3000/listings";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

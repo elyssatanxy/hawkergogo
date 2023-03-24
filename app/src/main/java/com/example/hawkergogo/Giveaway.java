@@ -221,7 +221,7 @@ public class Giveaway extends AppCompatActivity{
             public void onClick(View view) {
                 // Send function
                 // Adding data
-                String url = "http://10.0.2.2:3000/listings";
+                String url = "http://100.24.242.101:3000/listings";
                 Map<String, String> params = new HashMap();
                 params.put("title", selectedTitle.getText().toString());
                 params.put("portionremaining", portionInput.getText().toString());
