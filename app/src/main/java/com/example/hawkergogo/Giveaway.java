@@ -102,7 +102,7 @@ public class Giveaway extends AppCompatActivity{
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-                setImagePrefill(R.drawable.food_caifan);
+                setImagePrefill(R.drawable.kunyah_rendang);
             }
         });
 
@@ -166,7 +166,7 @@ public class Giveaway extends AppCompatActivity{
         openLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLocationName.setText("Maxwell Food Centre");
+                openLocationName.setText("SMU School of Economics");
             }
         });
 
