@@ -175,6 +175,7 @@ public class Giveaway extends AppCompatActivity{
         if(getIntent().hasExtra("repeatOrder")){
             Listing item = (Listing) getIntent().getSerializableExtra("repeatOrder");
             setImagePrefill(item.getImage());
+            downloadUrl = Uri.parse(item.getImage());
             selectedTitle.setText(item.getTitle());
             portionInput.setText(String.valueOf(item.getPortions()));
             openLocationName.setText(item.getLocation());
@@ -345,7 +346,6 @@ public class Giveaway extends AppCompatActivity{
                 params.put("description", descriptionInput.getText().toString());
                 params.put("endtime", timeInput.getText().toString());
                 params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                System.out.println(downloadUrl.toString());
                 if (edit == true){
                     params.put("id", String.valueOf(id));
                     JSONObject parameters = new JSONObject(params);
