@@ -3,6 +3,7 @@ package com.example.hawkergogo;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -41,6 +42,7 @@ import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -67,6 +69,8 @@ public class Giveaway extends AppCompatActivity{
     private int id;
 
     private final int PICK_IMAGE_REQUEST = 22;
+
+    private static final int pic_id = 123;
     private Uri filePath;
     private Uri downloadUrl;
     private ImageView imageView;
@@ -94,14 +98,31 @@ public class Giveaway extends AppCompatActivity{
             catch (IOException e) {
                 e.printStackTrace();
             }
+        } else  if (requestCode == pic_id) {
+            // BitMap is data structure of image file which store the image in memory
+            System.out.println("XXXX0");
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            filePath = getImageUri(getApplicationContext(), photo);
+
+            // Set the image in imageview for display
+            imageView.setImageBitmap(photo);
         }
         uploadImage();
+        System.out.println("XXXX1");
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage,
+                "Title", null);
+        return Uri.parse(path);
+    }
     private void uploadImage()
     {
+        System.out.println("XXXX2");
         if (filePath != null) {
-
+            System.out.println("XXXX3");
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
@@ -124,8 +145,6 @@ public class Giveaway extends AppCompatActivity{
                                               progressDialog.dismiss();
                                           }
                                       });
-                                    System.out.println("******");
-
 //                                    downloadUrl = taskSnapshot.
 //                                    System.out.println("******");
 //                                    progressDialog.dismiss();
@@ -200,15 +219,20 @@ public class Giveaway extends AppCompatActivity{
         openCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(intent.ACTION_GET_CONTENT);
 
-                startActivityForResult(
-                        Intent.createChooser(
-                                intent,
-                                "Select image"),
-                        PICK_IMAGE_REQUEST);
+                Intent cameraIntent = new Intent();
+                cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, pic_id);
+
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(intent.ACTION_GET_CONTENT);
+//
+//                startActivityForResult(
+//                        Intent.createChooser(
+//                                intent,
+//                                "Select image"),
+//                        PICK_IMAGE_REQUEST);
 //                try{
 //                    Intent cameraIntent = new Intent();
 //                    cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
