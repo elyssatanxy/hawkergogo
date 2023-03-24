@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class LoadingScreen extends AppCompatActivity {
+public class HawkerGoGo extends AppCompatActivity {
     Handler handler;
 
     @Override
@@ -17,7 +17,7 @@ public class LoadingScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run(){
-                Intent intent = new Intent(LoadingScreen.this, MainActivity.class);
+                Intent intent = new Intent(HawkerGoGo.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

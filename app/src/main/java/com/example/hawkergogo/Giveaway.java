@@ -77,8 +77,6 @@ public class Giveaway extends AppCompatActivity{
     FirebaseStorage storage;
     StorageReference storageRef;
 
-    String imageName;
-
     int [] foodImages = {R.drawable.food_caifan, R.drawable.food_chickenrice, R.drawable.food_fishballnood, R.drawable.food_nasilemat, R.drawable.food_rotiplate};
 
     @Override
@@ -100,15 +98,12 @@ public class Giveaway extends AppCompatActivity{
             }
         } else  if (requestCode == pic_id) {
             // BitMap is data structure of image file which store the image in memory
-            System.out.println("XXXX0");
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             filePath = getImageUri(getApplicationContext(), photo);
 
             // Set the image in imageview for display
             imageView.setImageBitmap(photo);
         }
-        uploadImage();
-        System.out.println("XXXX1");
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -120,9 +115,7 @@ public class Giveaway extends AppCompatActivity{
     }
     private void uploadImage()
     {
-        System.out.println("XXXX2");
         if (filePath != null) {
-            System.out.println("XXXX3");
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
@@ -146,7 +139,6 @@ public class Giveaway extends AppCompatActivity{
                                           }
                                       });
 //                                    downloadUrl = taskSnapshot.
-//                                    System.out.println("******");
 //                                    progressDialog.dismiss();
 //                                    Toast.makeText(Giveaway.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                                 }
@@ -220,28 +212,47 @@ public class Giveaway extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent cameraIntent = new Intent();
-                cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, pic_id);
+                Dialog cameraInput = new Dialog(view.getRootView().getContext());
+                cameraInput.setContentView(R.layout.upload_photo_dialog);
 
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(intent.ACTION_GET_CONTENT);
-//
-//                startActivityForResult(
-//                        Intent.createChooser(
-//                                intent,
-//                                "Select image"),
-//                        PICK_IMAGE_REQUEST);
-//                try{
-//                    Intent cameraIntent = new Intent();
-//                    cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    startActivity(cameraIntent);
-//                } catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//
-//                setImagePrefill(R.drawable.kunyah_rendang);
+                cameraInput.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cameraInput.show();
+
+                Button dialog_close = cameraInput.findViewById(R.id.photo_close);
+                dialog_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cameraInput.dismiss();
+                    }
+                });
+
+                Button cameraSelect = cameraInput.findViewById(R.id.cameraSelect);
+                cameraSelect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent cameraIntent = new Intent();
+                        cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, pic_id);
+                        cameraInput.dismiss();
+                    }
+                });
+
+                Button uploadSelect = cameraInput.findViewById(R.id.uploadSelect);
+                uploadSelect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(intent.ACTION_GET_CONTENT);
+
+                        startActivityForResult(
+                                Intent.createChooser(
+                                        intent,
+                                        "Select image"),
+                                PICK_IMAGE_REQUEST);
+                        cameraInput.dismiss();
+                    }
+                });
             }
         });
 
@@ -310,7 +321,6 @@ public class Giveaway extends AppCompatActivity{
         });
 
         // =========== TIME INPUT ===========
-        //  initiate the edit text
         timeInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -358,7 +368,7 @@ public class Giveaway extends AppCompatActivity{
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                uploadImage();
                 // Send function
                 // Adding data
                 String url = "http://100.24.242.101:3000/listings";
@@ -370,6 +380,10 @@ public class Giveaway extends AppCompatActivity{
                 params.put("description", descriptionInput.getText().toString());
                 params.put("endtime", timeInput.getText().toString());
                 params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+                // upload image
+                uploadImage();
+
                 if (edit == true){
                     params.put("id", String.valueOf(id));
                     JSONObject parameters = new JSONObject(params);
@@ -404,12 +418,6 @@ public class Giveaway extends AppCompatActivity{
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     queue.add(jsonRequest);
                 }
-
-
-//                Lisiting newListing = new Lisiting(R.drawable.food_caifan, "Cai Fan", Integer.getInteger(portionInput.getText().toString()),
-//                        openLocationName.toString(), descriptionInput.getText().toString(), timeInput.getText().toString());
-//
-//                Giveaway.super.finish();
             }
         });
 
@@ -424,28 +432,10 @@ public class Giveaway extends AppCompatActivity{
         for (int i = 0; i < foodTitleArray.length; i++) {
             foodTitleItemSource.add(new FoodTitleItem(foodTitleArray[i], foodImages[i]));
         }
-//        foodTitleItemSource.add(new FoodTitleItem("Add Item", R.drawable.ic_add_button));
     }
 
     public void setImagePrefill(String imgName){
         Glide.with(this).load(imgName).into(imageView);
-//        LinearLayout openCamera = (LinearLayout) findViewById(R.id.cameraContainer);
-//
-//        openCamera.removeAllViewsInLayout();
-//        float scale = getResources().getDisplayMetrics().density;
-//        int dpAsPixels = (int) (10*scale + 0.5f);
-//        RelativeLayout rootLayout = new RelativeLayout(Giveaway.this);
-//        rootLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-//
-//        //to retrieve image in res/drawable and set image in ImageView
-//        ImageView ivOne = new ImageView(Giveaway.this);
-//        ivOne.setImageResource(imgName);
-//        ivOne.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
-//        ivOne.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        ivOne.setLayoutParams(params);
-//        openCamera.addView(ivOne);
     }
 
     public void goBack(View view) {

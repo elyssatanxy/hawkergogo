@@ -60,8 +60,6 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         Listing item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getTime());
-        System.out.println(item.getImage());
-        System.out.println("******");
 //        holder.imageView.setImageResource(item.getImage());
         Glide.with(context).load(item.getImage()).into(holder.imageView);
 
@@ -81,6 +79,5 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
     public int getItemCount() {
         return list.size();
     }
-
 
 }
