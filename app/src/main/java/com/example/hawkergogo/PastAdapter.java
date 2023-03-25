@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,8 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         ImageView imageView;
         ImageView repeatButton;
 
+        CardView cardView;
+
 
         public MyView(View view) {
             super(view);
@@ -35,6 +38,7 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
             textViewTitle = (TextView) view.findViewById(R.id.textview);
             textViewPickup = (TextView) view.findViewById(R.id.pickup);
             imageView = (ImageView) view.findViewById(R.id.img);
+            cardView = (CardView) view.findViewById(R.id.cardview);
             repeatButton = (ImageView) view.findViewById(R.id.repeatbutton);
         }
     }
@@ -60,11 +64,9 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyView> {
         Listing item = list.get(position);
         holder.textViewTitle.setText(item.getTitle());
         holder.textViewPickup.setText(item.getTime());
-//        holder.imageView.setImageResource(item.getImage());
         Glide.with(context).load(item.getImage()).into(holder.imageView);
 
-
-        holder.repeatButton.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(v.getContext(), Giveaway.class);

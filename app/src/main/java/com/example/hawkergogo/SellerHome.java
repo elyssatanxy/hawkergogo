@@ -179,12 +179,4 @@ public class SellerHome extends AppCompatActivity{
         super.finish();
     }
 
-//    public void goToAddItem(View view) {
-//        Intent intent = new Intent(SellerHome.this, Giveaway.class);
-//        Listing oldListing = new Listing("x","Khicken Rice - Last 10 Plates!", 10, "Maxwell Food Centre",
-//                getResources().getString(R.string.chickenricedesc), "10:00 PM");
-//        intent.putExtra("reGiveAway", oldListing);
-//        startActivity(intent);
-//    }
-
 }

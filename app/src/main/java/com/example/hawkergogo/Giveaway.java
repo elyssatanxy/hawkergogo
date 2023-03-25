@@ -319,7 +319,7 @@ public class Giveaway extends AppCompatActivity{
         openLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLocationName.setText("SMU School of Computing and Info ...");
+                openLocationName.setText("SMU School of Computing and ...");
             }
         });
 
