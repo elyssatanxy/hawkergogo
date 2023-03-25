@@ -14,12 +14,13 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <RelativeLayout
-
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/gradient_background"
-            tools:context=".MainActivity">
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,8 +32,8 @@
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/cs206_profileicon" />
 
                 <LinearLayout
@@ -46,24 +47,34 @@
                         android:id="@+id/greeting1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hello Andy"
-                        android:textSize="24sp"
-                        android:fontFamily="@font/merriweatherblack" />
+                        android:text="Hello World 👋"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/merriweatherblack"/>
 
                     <TextView
                         android:id="@+id/greeting2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Let's get some food!"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/merriweatherregular"/>
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/merriweatherblack"/>
 
                 </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/locationicon" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -71,15 +82,20 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
                         android:text="Current Location:"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/merriweatherbold" />
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/merriweatheritalic"/>
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
                         android:text="Chijmes"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/merriweatheritalic"/>
                 </LinearLayout>
 
@@ -92,16 +108,13 @@
                 android:fontFamily="@font/merriweatherblack"
                 android:text="Ongoing Giveaways"
                 android:textSize="24sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="100dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ongoingRecycler"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="140dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/past"
@@ -110,30 +123,25 @@
                 android:fontFamily="@font/merriweatherblack"
                 android:text="Past Giveaways"
                 android:textSize="24dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="450dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/pastmessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/merriweatherregular"
                 android:text="Quickly repeat previous giveaways"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="480dp"/>
+                android:textSize="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/itemsRecycler"
-                android:scrollbars="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="510dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 
