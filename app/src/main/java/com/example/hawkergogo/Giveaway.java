@@ -203,6 +203,7 @@ public class Giveaway extends AppCompatActivity{
             Listing item = (Listing) getIntent().getSerializableExtra("editOrder");
             id = item.getId();
             setImagePrefill(item.getImage());
+            downloadUrl = Uri.parse(item.getImage());
             selectedTitle.setText(item.getTitle());
             portionInput.setText(String.valueOf(item.getPortions()));
             openLocationName.setText(item.getLocation());

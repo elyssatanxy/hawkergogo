@@ -68,6 +68,16 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyView>{
         holder.textViewReserved.setText(String.valueOf(item.getPortions()));
         holder.textViewPickup.setText(item.getTime());
         Glide.with(context).load(item.getImage()).into(holder.imageView);
+
+        holder.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(v.getContext(), Giveaway.class);
+                intent.putExtra("editOrder", item);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().getApplicationContext().startActivity(intent);
+            }
+        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
