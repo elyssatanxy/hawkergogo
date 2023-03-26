@@ -8,6 +8,9 @@ public class CartItem {
 
     private int qty;
     private int count;
+    private String desc;
+
+    private String location;
 
     public CartItem(String imageId, String title, String pickup) {
         this.imageId = imageId;
@@ -24,11 +27,13 @@ public class CartItem {
         this.qty = 0;
     }
 
-    public CartItem(String imageId, String title, String pickup, int qty) {
+    public CartItem(String imageId, String title, String pickup, int qty, String desc, String location) {
         this.imageId = imageId;
         this.title = title;
         this.pickup = pickup;
         this.qty = qty;
+        this.desc = desc;
+        this.location = location;
     }
 
     public String getImageId() {
@@ -76,4 +81,11 @@ public class CartItem {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
+    public String getDesc() { return desc; }
+    public void setDesc(String desc) { this.desc = desc; }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
 }

@@ -140,12 +140,6 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                             dialog_quantity.setText("" + (item.getCount() + 1));
                             item.setCount(item.getCount() + 1);
                         }
-                        if(item.getCount() != 0) {
-                            holder.count.setVisibility(View.VISIBLE);
-                            holder.count.setText(Integer.toString(item.getCount()));
-                        } else {
-                            holder.count.setVisibility(View.INVISIBLE);
-                        }
                     }
                 });
 
@@ -158,12 +152,6 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                             dialog_quantity.setText("" + (item.getCount() - 1));
                             item.setCount(item.getCount() - 1);
                         }
-                        if(item.getCount() != 0) {
-                            holder.count.setVisibility(View.VISIBLE);
-                            holder.count.setText(Integer.toString(item.getCount()));
-                        } else {
-                            holder.count.setVisibility(View.INVISIBLE);
-                        }
                     }
                 });
 
@@ -171,16 +159,17 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                 dialog_cart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        holder.qty.setText(Integer.toString(item.getQty()));
+                        holder.qty.setText(Integer.toString(item.getCount()));
 
-                        if (item.getQty() >= 1) {
+                        if (item.getCount() >= 1) {
+                            CartPayment.inCart.add(item);
                             holder.qty.setVisibility(View.VISIBLE);
                         }
 
-                        if (item.getQty() == 0) {
+                        if (item.getCount() == 0) {
+                            CartPayment.inCart.remove(item);
                             holder.qty.setVisibility(View.GONE);
                         }
-
                         myDialog.dismiss();
                     }
                 });

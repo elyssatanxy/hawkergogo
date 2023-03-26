@@ -177,7 +177,7 @@ public class ConsumerMain extends AppCompatActivity {
                     CartItem item = new CartItem(picture, title, endtime);
                     consumerPastOrdersSource.add(item);
                 } else {
-                    CartItem item = new CartItem(picture, title, endtime, portion);
+                    CartItem item = new CartItem(picture, title, endtime, portion, description, location);
                     consumerMainItemSource.add(item);
                 }
             } catch (JSONException e) {
@@ -187,7 +187,7 @@ public class ConsumerMain extends AppCompatActivity {
     }
 
     public void addItemsToMoreFoodRecyclerViewArrayList(JSONArray dataList) {
-        // Adding items to ArrayList
+        // Adding items to ArrayList - HARDCODED
         CartItem item = new CartItem("https://www.innit.com/public/recipes/images/1033246--742330450-en-US-0_s1000.jpg", "Khicken Rice - Last 20 Plates!", "9:30 pm");
         CartItem item2 = new CartItem("https://burpple-3.imgix.net/foods/4953a157939f12e66921893991_original.", "Lee's Cai Fan -  Sweet and ...", "10:00 pm");
         moreFoodSource = new ArrayList<>();

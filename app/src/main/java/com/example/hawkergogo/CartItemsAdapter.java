@@ -79,9 +79,9 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
 //        holder.imageView.setImageResource(item.getImageId());
         Glide.with(context).load(item.getImageId()).into(holder.imageView);
 
-        if(item.getQty() != 0) {
+        if(item.getCount() != 0) {
             holder.qty.setVisibility(View.VISIBLE);
-            holder.qty.setText(Integer.toString(item.getQty()));
+            holder.qty.setText(Integer.toString(item.getCount()));
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -92,17 +92,19 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
 
                 TextView dialog_title = myDialog.findViewById(R.id.listing_title);
                 TextView dialog_pickup = myDialog.findViewById(R.id.listing_pickup);
+                TextView dialog_desc = myDialog.findViewById(R.id.listing_description);
                 // TextView dialog_portions = myDialog.findViewById(R.id.listing_portions);
                 TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
+                TextView dialog_location = myDialog.findViewById(R.id.listing_location);
                 ImageView dialog_img = myDialog.findViewById(R.id.listing_img);
 
                 dialog_title.setText(item.getTitle());
                 dialog_pickup.setText(item.getPickup());
                 // dialog_portions.setText(item.getQty());
-                dialog_quantity.setText("" + item.getQty());
-//                dialog_img.setImageResource(item.getImageId());
+                dialog_desc.setText(item.getDesc());
+                dialog_location.setText("SMU School of Compu ...");
+                dialog_quantity.setText("" + item.getCount());
                 Glide.with(context).load(item.getImageId()).into(dialog_img);
-
 
                 recRecycler = (RecyclerView) myDialog.findViewById(R.id.recRecycler);
 
@@ -127,45 +129,45 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
                     }
                 });
 
-                Button dialog_add = myDialog.findViewById(R.id.add);
-                dialog_add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-                        dialog_quantity.setText("" + (item.getQty() + 1));
-                        item.setQty(item.getQty() + 1);
-                    }
-                });
-
-                Button dialog_minus = myDialog.findViewById(R.id.minus);
-                dialog_minus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-                        if (item.getQty() >= 1) {
-                            dialog_quantity.setText("" + (item.getQty() - 1));
-                            item.setQty(item.getQty() - 1);
-                        }
-                    }
-                });
-
-                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
-                dialog_cart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.qty.setText(Integer.toString(item.getQty()));
-
-                        if (item.getQty() >= 1) {
-                            holder.qty.setVisibility(View.VISIBLE);
-                        }
-
-                        if (item.getQty() == 0) {
-                            holder.qty.setVisibility(View.GONE);
-                        }
-
-                        myDialog.dismiss();
-                    }
-                });
+//                Button dialog_add = myDialog.findViewById(R.id.add);
+//                dialog_add.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
+//                        dialog_quantity.setText("" + (item.getQty() + 1));
+//                        item.setQty(item.getQty() + 1);
+//                    }
+//                });
+//
+//                Button dialog_minus = myDialog.findViewById(R.id.minus);
+//                dialog_minus.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
+//                        if (item.getQty() >= 1) {
+//                            dialog_quantity.setText("" + (item.getQty() - 1));
+//                            item.setQty(item.getQty() - 1);
+//                        }
+//                    }
+//                });
+//
+//                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
+//                dialog_cart.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        holder.qty.setText(Integer.toString(item.getQty()));
+//
+//                        if (item.getQty() >= 1) {
+//                            holder.qty.setVisibility(View.VISIBLE);
+//                        }
+//
+//                        if (item.getQty() == 0) {
+//                            holder.qty.setVisibility(View.GONE);
+//                        }
+//
+//                        myDialog.dismiss();
+//                    }
+//                });
             }
         });
     }
@@ -177,7 +179,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
     }
 
     public void addItemsToRecRecyclerViewArrayList() {
-        // Adding items to ArrayList
+        // Adding items to ArrayList - HARDCODED
         CartItem item = new CartItem("https://www.innit.com/public/recipes/images/1033246--742330450-en-US-0_s1000.jpg", "Knicken Rice - Last 20 Plates!", "9:30pm");
         CartItem item2 = new CartItem("https://burpple-3.imgix.net/foods/4953a157939f12e66921893991_original.", "Bob's Western Diner's - 3 more pl...", "10:00pm");
         recSource = new ArrayList<>();
