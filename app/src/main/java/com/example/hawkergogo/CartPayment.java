@@ -1,7 +1,10 @@
 package com.example.hawkergogo;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -9,8 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class CartPayment extends AppCompatActivity {
@@ -41,8 +57,8 @@ public class CartPayment extends AppCompatActivity {
         itemsRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         TextView emptyRecyclerText = (TextView) findViewById(R.id.empty_view);
+        reserveFood = findViewById(R.id.bookFood);
 
-        System.out.println(inCart.toString());
         if (inCart.isEmpty()) {
             itemsRecycler.setVisibility(View.GONE);
             emptyRecyclerText.setVisibility(View.VISIBLE);
@@ -52,7 +68,6 @@ public class CartPayment extends AppCompatActivity {
             emptyRecyclerText.setVisibility(View.GONE);
             itemsRecycler.setLayoutManager(itemsRecyclerViewLayoutManager);
             ArrayList<CartItem> arrListInCart = new ArrayList<CartItem>(inCart);
-            System.out.println(arrListInCart);
             itemsAdapter = new CartItemsAdapter(arrListInCart);
             verticalLayout = new LinearLayoutManager(CartPayment.this, LinearLayoutManager.VERTICAL, false);
             itemsRecycler.setLayoutManager(verticalLayout);
@@ -75,6 +90,48 @@ public class CartPayment extends AppCompatActivity {
 
         // Set adapter on recycler view
         paymentRecycler.setAdapter(paymentAdapter);
+
+    }
+
+    public void reserveFoody(View view){
+        ArrayList<CartItem> arrListInCart = new ArrayList<CartItem>(inCart);
+        for (int i=0; i < arrListInCart.size(); i++){
+            CartItem item = arrListInCart.get(i);
+            int id = item.getId();
+            int count = item.getCount();
+            int remains = item.getQty() - count;
+
+            // call api to update the total count at seller
+            String url = "http://100.24.242.101:3000/listings";
+            Map<String, String> params = new HashMap();
+            params.put("id", String.valueOf(id));
+            params.put("title", item.getTitle());
+            params.put("portionremaining", String.valueOf(remains));
+            params.put("location", item.getLocation());
+            params.put("picture", item.getImageId());
+            params.put("description", item.getDesc());
+            params.put("endtime", item.getPickup());
+            params.put("date", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            JSONObject parameters = new JSONObject(params);
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.PUT, url, parameters, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    inCart.clear();
+                    item.setCount(0);
+                    CartPayment.super.finish();
+                    CartPayment.super.onRestart();
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+            queue.add(jsonRequest);
+        }
     }
 
     // Function to add items in RecyclerView.

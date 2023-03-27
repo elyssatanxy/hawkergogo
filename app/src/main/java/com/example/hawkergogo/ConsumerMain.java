@@ -48,12 +48,15 @@ public class ConsumerMain extends AppCompatActivity {
     ArrayList<CartItem> moreFoodSource;
     CartItemsAdapter moreFoodAdapter;
 
+    boolean firstVisit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer_main);
 
         SearchView searchView = findViewById(searchBar);
+        firstVisit =  true;
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +152,15 @@ public class ConsumerMain extends AppCompatActivity {
         });
     }
 
+    public void onResume() {
+        super.onResume();
+        if (firstVisit == true) {
+            firstVisit = false;
+        } else {
+            finish();
+            startActivity(getIntent());
+        }
+    }
     public void addItemsToFeaturedRecyclerViewArrayList(JSONArray dataList) {
         // Adding items to ArrayList
         LocalDate dateNow = LocalDate.now();
@@ -175,9 +187,11 @@ public class ConsumerMain extends AppCompatActivity {
                 }
                 if (dateNow.isAfter(pastDate) || portion == 0){
                     CartItem item = new CartItem(picture, title, endtime);
+                    item.setId(id);
                     consumerPastOrdersSource.add(item);
                 } else {
                     CartItem item = new CartItem(picture, title, endtime, portion, description, location);
+                    item.setId(id);
                     consumerMainItemSource.add(item);
                 }
             } catch (JSONException e) {

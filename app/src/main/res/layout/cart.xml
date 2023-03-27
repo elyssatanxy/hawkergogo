@@ -165,6 +165,7 @@
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textSize="14sp"
+            android:onClick="reserveFoody"
             android:text="Reserve Food" />
 
     </LinearLayout>

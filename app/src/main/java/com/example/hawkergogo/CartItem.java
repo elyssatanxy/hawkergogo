@@ -1,6 +1,8 @@
 package com.example.hawkergogo;
 
 public class CartItem {
+
+    private int id;
     private String imageId;
     private String title;
     private String reserved;
@@ -36,6 +38,10 @@ public class CartItem {
         this.location = location;
     }
 
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
     public String getImageId() {
         return imageId;
     }
