@@ -92,15 +92,16 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                 myDialog.setContentView(R.layout.listing);
                 TextView dialog_title = myDialog.findViewById(R.id.listing_title);
                 TextView dialog_pickup = myDialog.findViewById(R.id.listing_pickup);
-//                TextView dialog_location = myDialog.findViewById(R.id.listing_location);
+                TextView dialog_location = myDialog.findViewById(R.id.listing_location);
                 TextView dialog_portions = myDialog.findViewById(R.id.listing_portions);
                 TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
                 ImageView dialog_img = myDialog.findViewById(R.id.listing_img);
+                TextView dialog_desc = myDialog.findViewById(R.id.listing_description);
 
                 dialog_title.setText(item.getTitle());
                 dialog_pickup.setText(item.getPickup());
-//                dialog_location.setText(item.getLocation());
-
+                dialog_location.setText("SMU School of Compu ...");
+                dialog_desc.setText(item.getDesc());
                 dialog_portions.setText("" + item.getQty());
 
                 dialog_quantity.setText("" + item.getCount());
