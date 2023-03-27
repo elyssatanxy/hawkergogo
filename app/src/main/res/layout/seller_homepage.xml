@@ -47,7 +47,7 @@
                         android:id="@+id/greeting1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hello World 👋"
+                        android:text="Hello Andy 👋"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/merriweatherblack"
-                android:text="Ongoing Giveaways"
+                android:text="Ongoing BuFeis"
                 android:textSize="24sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/merriweatherblack"
-                android:text="Past Giveaways"
+                android:text="Past BuFeis"
                 android:textSize="24dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"/>
