@@ -336,7 +336,7 @@ public class Giveaway extends AppCompatActivity{
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         int hour = selectedHour;
-                        int minutes = minute;
+                        int minutes = selectedMinute;
                         String timeSet = "";
                         if (hour > 12) {
                             hour -= 12;
