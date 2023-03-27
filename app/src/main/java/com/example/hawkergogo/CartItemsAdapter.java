@@ -129,45 +129,59 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.MyVi
                     }
                 });
 
-//                Button dialog_add = myDialog.findViewById(R.id.add);
-//                dialog_add.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-//                        dialog_quantity.setText("" + (item.getQty() + 1));
-//                        item.setQty(item.getQty() + 1);
-//                    }
-//                });
-//
-//                Button dialog_minus = myDialog.findViewById(R.id.minus);
-//                dialog_minus.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
-//                        if (item.getQty() >= 1) {
-//                            dialog_quantity.setText("" + (item.getQty() - 1));
-//                            item.setQty(item.getQty() - 1);
-//                        }
-//                    }
-//                });
-//
-//                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
-//                dialog_cart.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        holder.qty.setText(Integer.toString(item.getQty()));
-//
-//                        if (item.getQty() >= 1) {
-//                            holder.qty.setVisibility(View.VISIBLE);
-//                        }
-//
-//                        if (item.getQty() == 0) {
-//                            holder.qty.setVisibility(View.GONE);
-//                        }
-//
-//                        myDialog.dismiss();
-//                    }
-//                });
+                Button dialog_add = myDialog.findViewById(R.id.add);
+                dialog_add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
+                        dialog_quantity.setText("" + (item.getCount() + 1));
+                        item.setCount(item.getCount() + 1);
+                    }
+                });
+
+                Button dialog_minus = myDialog.findViewById(R.id.minus);
+                dialog_minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TextView dialog_quantity = myDialog.findViewById(R.id.quantity);
+                        if (item.getCount() >= 1) {
+                            dialog_quantity.setText("" + (item.getCount() - 1));
+                            item.setCount(item.getCount() - 1);
+                        }
+                    }
+                });
+
+                Button dialog_cart = myDialog.findViewById(R.id.add_to_cart);
+                dialog_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.qty.setText(Integer.toString(item.getCount()));
+
+                        for (CartItem i : CartPayment.inCart) {
+                            if (i.getId() == item.getId()) {
+                                item.setCount(item.getCount() + i.getCount());
+                                CartPayment.inCart.remove(i);
+                                CartPayment.inCart.add(item);
+                                holder.qty.setVisibility(View.VISIBLE);
+
+                                myDialog.dismiss();
+                                return;
+                            }
+                        }
+
+                        if (item.getCount() >= 1) {
+                            CartPayment.inCart.add(item);
+                            holder.qty.setVisibility(View.VISIBLE);
+                        }
+
+                        if (item.getCount() == 0) {
+                            CartPayment.inCart.remove(item);
+                            holder.qty.setVisibility(View.GONE);
+                        }
+
+                        myDialog.dismiss();
+                    }
+                });
             }
         });
     }

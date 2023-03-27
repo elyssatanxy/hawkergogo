@@ -162,6 +162,18 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                     public void onClick(View v) {
                         holder.qty.setText(Integer.toString(item.getCount()));
 
+                        for (CartItem i : CartPayment.inCart) {
+                            if (i.getId() == item.getId()) {
+                                item.setCount(item.getCount() + i.getCount());
+                                CartPayment.inCart.remove(i);
+                                CartPayment.inCart.add(item);
+                                holder.qty.setVisibility(View.VISIBLE);
+
+                                myDialog.dismiss();
+                                return;
+                            }
+                        }
+
                         if (item.getCount() >= 1) {
                             CartPayment.inCart.add(item);
                             holder.qty.setVisibility(View.VISIBLE);
@@ -171,6 +183,7 @@ public class ConsumerMainAdapter extends RecyclerView.Adapter<ConsumerMainAdapte
                             CartPayment.inCart.remove(item);
                             holder.qty.setVisibility(View.GONE);
                         }
+
                         myDialog.dismiss();
                     }
                 });
